@@ -1,0 +1,16 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: shell-cajaahorros-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: shell_cajaahorros
+      POSTGRES_USER: shell_user
+      POSTGRES_PASSWORD: shell_pass
+    ports:
+      - "5432:5432"
+    volumes:
+      - shell_postgres_data:/var/lib/postgresql/data
+
+volumes:
+  shell_postgres_data:

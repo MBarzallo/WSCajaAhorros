@@ -1,0 +1,6 @@
+@WSCajaAhorros.API_HostAddress = http://localhost:5070
+
+GET {{WSCajaAhorros.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
