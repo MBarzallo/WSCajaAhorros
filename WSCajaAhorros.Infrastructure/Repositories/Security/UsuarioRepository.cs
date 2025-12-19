@@ -24,4 +24,10 @@ public class UsuarioRepository : IUsuarioRepository
         await _dbContext.Usuarios.AddAsync(usuario);
         await _dbContext.SaveChangesAsync();
     }
+
+    public async Task<Usuario?> ObtenerPorNombreUsuario(string nombreUsuario)
+    {
+        var usuario = await _dbContext.Usuarios.FirstOrDefaultAsync(u => u.NombreUsuario == nombreUsuario);
+        return usuario;
+    }
 }
