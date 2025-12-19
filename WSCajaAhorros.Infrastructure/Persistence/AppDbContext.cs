@@ -1,0 +1,26 @@
+using Microsoft.EntityFrameworkCore;
+using WSCajaAhorros.Domain.Security;
+
+namespace WSCajaAhorros.Infrastructure.Persistence;
+
+public class AppDbContext : DbContext
+{
+    public AppDbContext(DbContextOptions<AppDbContext> options) : base(options){}
+    
+    
+    //seguridades
+    public DbSet<Usuario> Usuarios => Set<Usuario>();
+    public DbSet<Rol> Roles => Set<Rol>();
+    public DbSet<Permiso> Permisos => Set<Permiso>();
+    public DbSet<RolPermiso> RolPermisos => Set<RolPermiso>();
+    public DbSet<UsuarioAccesoHorario> UsuarioAccesoHorarios => Set<UsuarioAccesoHorario>();
+    public DbSet<UsuarioRol> UsuarioRoles => Set<UsuarioRol>();
+    
+ 
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        base.OnModelCreating(modelBuilder);
+
+        modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
+    }
+}

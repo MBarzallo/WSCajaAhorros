@@ -9,7 +9,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\WSCajaAhorros.Application\WSCajaAhorros.Application.csproj" />
-      <ProjectReference Include="..\WSCajaAhorros.Domain \WSCajaAhorros.Domain.csproj" />
+      <ProjectReference Include="..\WSCajaAhorros.Domain\WSCajaAhorros.Domain.csproj" />
     </ItemGroup>
 
     <ItemGroup>
