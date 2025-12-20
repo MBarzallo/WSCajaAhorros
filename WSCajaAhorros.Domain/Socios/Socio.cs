@@ -40,7 +40,7 @@ public class Socio
         FechaIngreso = DateTime.UtcNow;
     }
 
-    // ✅ Fábricas: obligan a crear bien según tipo
+    //  Fábricas: obligan a crear bien según tipo
     public static Socio CrearNatural(
         Identificacion identificacion,
         string nombres,
@@ -72,7 +72,7 @@ public class Socio
         return socio;
     }
 
-    // ✅ Operaciones del agregado (mantener consistencia)
+    //  Operaciones del agregado (mantener consistencia)
     public void Desactivar()
     {
         EstaActivo = false;

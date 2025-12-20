@@ -12,8 +12,8 @@ using WSCajaAhorros.Infrastructure.Persistence;
 namespace WSCajaAhorros.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20251219075344_Initial_UsuariosRoles")]
-    partial class Initial_UsuariosRoles
+    [Migration("20251220065641_AgregarSociosyCuentas")]
+    partial class AgregarSociosyCuentas
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,6 +24,33 @@ namespace WSCajaAhorros.Infrastructure.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
+
+            modelBuilder.Entity("WSCajaAhorros.Domain.Cuentas.Cuenta", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<int>("Estado")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("FechaApertura")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("NumeroCuenta")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<Guid>("ProductoCuentaId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("SocioId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Cuentas");
+                });
 
             modelBuilder.Entity("WSCajaAhorros.Domain.Security.Permiso", b =>
                 {
@@ -184,6 +211,149 @@ namespace WSCajaAhorros.Infrastructure.Migrations
                     b.ToTable("usuarios_roles", (string)null);
                 });
 
+            modelBuilder.Entity("WSCajaAhorros.Domain.Socios.CorreoSocio", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("CorreoElectronico")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<bool>("EsPrincipal")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("EstaActivo")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("Etiqueta")
+                        .HasColumnType("text");
+
+                    b.Property<Guid>("SocioId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SocioId");
+
+                    b.ToTable("CorreoSocio");
+                });
+
+            modelBuilder.Entity("WSCajaAhorros.Domain.Socios.DireccionSocio", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<bool>("EsPrincipal")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("EstaActiva")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("Etiqueta")
+                        .HasColumnType("text");
+
+                    b.Property<Guid>("SocioId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SocioId");
+
+                    b.ToTable("DireccionSocio");
+                });
+
+            modelBuilder.Entity("WSCajaAhorros.Domain.Socios.Socio", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Apellidos")
+                        .HasColumnType("text");
+
+                    b.Property<bool>("EstaActivo")
+                        .HasColumnType("boolean");
+
+                    b.Property<DateTime?>("FechaActualizacion")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateOnly?>("FechaConstitucion")
+                        .HasColumnType("date");
+
+                    b.Property<DateTime>("FechaIngreso")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateOnly?>("FechaNacimiento")
+                        .HasColumnType("date");
+
+                    b.Property<string>("NombreComercial")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Nombres")
+                        .HasColumnType("text");
+
+                    b.Property<string>("RazonSocial")
+                        .HasColumnType("text");
+
+                    b.Property<int>("TipoPersona")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Socios");
+                });
+
+            modelBuilder.Entity("WSCajaAhorros.Domain.Socios.TelefonoSocio", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<bool>("EsPrincipal")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("EstaActivo")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("Etiqueta")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Numero")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<Guid>("SocioId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SocioId");
+
+                    b.ToTable("TelefonoSocio");
+                });
+
+            modelBuilder.Entity("WSCajaAhorros.Domain.Cuentas.Cuenta", b =>
+                {
+                    b.OwnsOne("WSCajaAhorros.Domain.Common.Dinero", "Saldo", b1 =>
+                        {
+                            b1.Property<Guid>("CuentaId")
+                                .HasColumnType("uuid");
+
+                            b1.HasKey("CuentaId");
+
+                            b1.ToTable("Cuentas");
+
+                            b1.WithOwner()
+                                .HasForeignKey("CuentaId");
+                        });
+
+                    b.Navigation("Saldo")
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("WSCajaAhorros.Domain.Security.RolPermiso", b =>
                 {
                     b.HasOne("WSCajaAhorros.Domain.Security.Permiso", "Permiso")
@@ -233,6 +403,68 @@ namespace WSCajaAhorros.Infrastructure.Migrations
                     b.Navigation("Usuario");
                 });
 
+            modelBuilder.Entity("WSCajaAhorros.Domain.Socios.CorreoSocio", b =>
+                {
+                    b.HasOne("WSCajaAhorros.Domain.Socios.Socio", null)
+                        .WithMany("Correos")
+                        .HasForeignKey("SocioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("WSCajaAhorros.Domain.Socios.DireccionSocio", b =>
+                {
+                    b.HasOne("WSCajaAhorros.Domain.Socios.Socio", null)
+                        .WithMany("Direcciones")
+                        .HasForeignKey("SocioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.OwnsOne("WSCajaAhorros.Domain.Common.Direccion", "Direccion", b1 =>
+                        {
+                            b1.Property<Guid>("DireccionSocioId")
+                                .HasColumnType("uuid");
+
+                            b1.HasKey("DireccionSocioId");
+
+                            b1.ToTable("DireccionSocio");
+
+                            b1.WithOwner()
+                                .HasForeignKey("DireccionSocioId");
+                        });
+
+                    b.Navigation("Direccion")
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("WSCajaAhorros.Domain.Socios.Socio", b =>
+                {
+                    b.OwnsOne("WSCajaAhorros.Domain.Socios.Identificacion", "Identificacion", b1 =>
+                        {
+                            b1.Property<Guid>("SocioId")
+                                .HasColumnType("uuid");
+
+                            b1.HasKey("SocioId");
+
+                            b1.ToTable("Socios");
+
+                            b1.WithOwner()
+                                .HasForeignKey("SocioId");
+                        });
+
+                    b.Navigation("Identificacion")
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("WSCajaAhorros.Domain.Socios.TelefonoSocio", b =>
+                {
+                    b.HasOne("WSCajaAhorros.Domain.Socios.Socio", null)
+                        .WithMany("Telefonos")
+                        .HasForeignKey("SocioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("WSCajaAhorros.Domain.Security.Permiso", b =>
                 {
                     b.Navigation("Roles");
@@ -250,6 +482,15 @@ namespace WSCajaAhorros.Infrastructure.Migrations
                     b.Navigation("AccesosHorarios");
 
                     b.Navigation("Roles");
+                });
+
+            modelBuilder.Entity("WSCajaAhorros.Domain.Socios.Socio", b =>
+                {
+                    b.Navigation("Correos");
+
+                    b.Navigation("Direcciones");
+
+                    b.Navigation("Telefonos");
                 });
 #pragma warning restore 612, 618
         }

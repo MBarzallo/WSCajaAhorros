@@ -1,9 +1,14 @@
+using Microsoft.EntityFrameworkCore;
 namespace WSCajaAhorros.Domain.Common;
 
+[Owned]
 public sealed class Dinero
 {
+    
     public decimal Monto { get; }
 
+    private Dinero() { }
+    
     public Dinero(decimal monto)
     {
         if (monto < 0)

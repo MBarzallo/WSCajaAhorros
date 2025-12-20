@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using WSCajaAhorros.Domain.Security;
+using WSCajaAhorros.Domain.Socios;
+using WSCajaAhorros.Domain.Cuentas;
 
 namespace WSCajaAhorros.Infrastructure.Persistence;
 
@@ -15,6 +17,8 @@ public class AppDbContext : DbContext
     public DbSet<RolPermiso> RolPermisos => Set<RolPermiso>();
     public DbSet<UsuarioAccesoHorario> UsuarioAccesoHorarios => Set<UsuarioAccesoHorario>();
     public DbSet<UsuarioRol> UsuarioRoles => Set<UsuarioRol>();
+    public DbSet<Socio> Socios => Set<Socio>();
+    public DbSet<Cuenta> Cuentas => Set<Cuenta>();
     
  
     protected override void OnModelCreating(ModelBuilder modelBuilder)

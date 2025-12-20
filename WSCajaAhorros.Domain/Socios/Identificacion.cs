@@ -1,7 +1,10 @@
+using Microsoft.EntityFrameworkCore;
 namespace WSCajaAhorros.Domain.Socios;
 
+[Owned]
 public sealed class Identificacion
 {
+    public Identificacion(){}
     public TipoIdentificacion Tipo { get; }
     public string Numero { get; }
 

@@ -1,7 +1,10 @@
+using Microsoft.EntityFrameworkCore;
 namespace WSCajaAhorros.Domain.Common;
 
+[Owned]
 public sealed class Direccion
 {
+    public Direccion(){}
     public string Linea1 { get; }
     public string? Linea2 { get; }
     public string Ciudad { get; }
