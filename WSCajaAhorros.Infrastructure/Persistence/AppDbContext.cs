@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using WSCajaAhorros.Domain.Contabilidad;
 using WSCajaAhorros.Domain.Security;
 using WSCajaAhorros.Domain.Socios;
 using WSCajaAhorros.Domain.Cuentas;
@@ -31,6 +32,9 @@ public class AppDbContext : DbContext
     
     public DbSet<Movimiento> Movimientos => Set<Movimiento>();
     public DbSet<Transferencia> Transferencias => Set<Transferencia>();
+    
+    public DbSet<AsientoContable> AsientosContables => Set<AsientoContable>();
+
 
     
  
