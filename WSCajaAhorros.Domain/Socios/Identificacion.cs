@@ -5,8 +5,8 @@ namespace WSCajaAhorros.Domain.Socios;
 public sealed class Identificacion
 {
     public Identificacion(){}
-    public TipoIdentificacion Tipo { get; }
-    public string Numero { get; }
+    public TipoIdentificacion Tipo { get; private set; }
+    public string Numero { get; private set; } = null!;
 
     public Identificacion(TipoIdentificacion tipo, string numero)
     {

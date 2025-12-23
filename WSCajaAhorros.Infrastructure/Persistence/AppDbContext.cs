@@ -10,15 +10,20 @@ public class AppDbContext : DbContext
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options){}
     
     
-    //seguridades
     public DbSet<Usuario> Usuarios => Set<Usuario>();
     public DbSet<Rol> Roles => Set<Rol>();
     public DbSet<Permiso> Permisos => Set<Permiso>();
     public DbSet<RolPermiso> RolPermisos => Set<RolPermiso>();
     public DbSet<UsuarioAccesoHorario> UsuarioAccesoHorarios => Set<UsuarioAccesoHorario>();
     public DbSet<UsuarioRol> UsuarioRoles => Set<UsuarioRol>();
+    
+    
     public DbSet<Socio> Socios => Set<Socio>();
-    public DbSet<Cuenta> Cuentas => Set<Cuenta>();
+    public DbSet<TelefonoSocio> TelefonosSocios => Set<TelefonoSocio>();
+    public DbSet<CorreoSocio> CorreosSocios => Set<CorreoSocio>();
+    public DbSet<DireccionSocio> DireccionesSocios => Set<DireccionSocio>();
+    
+    
     
  
     protected override void OnModelCreating(ModelBuilder modelBuilder)
