@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using WSCajaAhorros.Domain.Security;
 using WSCajaAhorros.Domain.Socios;
 using WSCajaAhorros.Domain.Cuentas;
+using WSCajaAhorros.Domain.Productos;
 
 namespace WSCajaAhorros.Infrastructure.Persistence;
 
@@ -24,6 +25,8 @@ public class AppDbContext : DbContext
     public DbSet<DireccionSocio> DireccionesSocios => Set<DireccionSocio>();
     
     
+    public DbSet<Cuenta> Cuentas => Set<Cuenta>();
+    public DbSet<ProductoCuenta> ProductoCuentas => Set<ProductoCuenta>();
     
  
     protected override void OnModelCreating(ModelBuilder modelBuilder)
