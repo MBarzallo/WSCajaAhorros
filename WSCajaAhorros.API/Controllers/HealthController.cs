@@ -1,6 +1,14 @@
+using Microsoft.AspNetCore.Mvc;
+
 namespace WSCajaAhorros.API.Controllers;
 
-public class HealthController
+[ApiController]
+[Route("api/[controller]")]
+public class HealthController :ControllerBase
 {
-    
+    [HttpGet]
+    public IActionResult Get()
+    {
+        return Ok("Service working...");
+    }
 }

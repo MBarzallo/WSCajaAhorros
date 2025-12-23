@@ -21,4 +21,18 @@ public class AutenticacionController : ControllerBase
         var response = await _autenticacionService.Login(request);
         return Ok(response);
     }
+
+    [HttpPut("activar/{usuarioId}")]
+    public async Task<IActionResult> Activar(Guid usuarioId)
+    {
+        var response = await _autenticacionService.Activar(usuarioId);
+        return Ok(response);
+    }
+    
+    [HttpPut("desactivar/{usuarioId}")]
+    public async Task<IActionResult> Desactivar(Guid usuarioId)
+    {
+        var response = await _autenticacionService.Desactivar(usuarioId);
+        return Ok(response);
+    }
 }

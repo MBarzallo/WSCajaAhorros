@@ -11,10 +11,12 @@ namespace WSCajaAhorros.Application.Services.Security;
 public class UsuarioService : IUsuarioService
 {
     private readonly IUsuarioRepository _usuarioRepository;
+    private readonly IRolRepository _rolRepository;
     
-    public  UsuarioService(IUsuarioRepository usuarioRepository)
+    public  UsuarioService(IUsuarioRepository usuarioRepository, IRolRepository rolRepository)
     {
         _usuarioRepository = usuarioRepository;
+        _rolRepository = rolRepository;
     }
 
     public async Task<Response<List<Usuario>>> ObtenerTodos()
@@ -48,7 +50,35 @@ public class UsuarioService : IUsuarioService
             return Response.Fail(ex.Message);
         }
     }
-    
+
+    public async Task<Response> CrearUsuarioRol(Guid userId, CrearUsuarioRolRequest request)
+    {
+        try
+        {
+            var usuario = await _usuarioRepository.ObtenerPorId(userId);
+            if (usuario == null)
+                return Response.Fail("El usuario no existe");
+
+            var rol = await _rolRepository.ObtenerPorId(request.RolId);
+            if (rol == null)
+                return Response.Fail("El rol no existe");
+            
+            if(usuario.Roles.Any(r=>r.RolId==request.RolId))
+                return Response.Fail("El rol ya esta asignado al usuario");
+
+            var usuarioRol = new UsuarioRol(usuario, rol);
+            
+            usuario.AgregarRol(usuarioRol);
+            await _usuarioRepository.SaveChangesAsync();
+
+            return Response.Success();
+
+        }
+        catch (Exception ex)
+        {
+            return Response.Fail(ex.Message);
+        }
+    }
     
 
 }

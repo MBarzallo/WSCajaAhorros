@@ -9,26 +9,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="17dff95b-ed7a-45e6-b205-41858a6fe460" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/WSCajaAhorros.API/Controllers/AutenticacionController.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WSCajaAhorros.API/Controllers/UsuariosController.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WSCajaAhorros.Application/Common/Security/JwtService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WSCajaAhorros.Application/Common/Security/PasswordGenerator.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WSCajaAhorros.Application/Common/Security/PasswordHasher.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WSCajaAhorros.Application/Common/Validators/EmailValidator.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WSCajaAhorros.Application/Common/Validators/UsernameValidator.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WSCajaAhorros.Application/DTOs/Security/CrearUsuarioRequest.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WSCajaAhorros.Application/DTOs/Security/LoginRequest.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WSCajaAhorros.Application/DTOs/Security/LoginResponse.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WSCajaAhorros.Application/Interfaces/Services/Security/IAutenticacionService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WSCajaAhorros.Application/Services/Security/AutenticacionService.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.WSCajaAhorros/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.WSCajaAhorros/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WSCajaAhorros.API/appsettings.Development.json" beforeDir="false" afterPath="$PROJECT_DIR$/WSCajaAhorros.API/appsettings.Development.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WSCajaAhorros.API/Controllers/AutenticacionController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WSCajaAhorros.API/Controllers/AutenticacionController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WSCajaAhorros.API/Controllers/HealthController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WSCajaAhorros.API/Controllers/HealthController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WSCajaAhorros.Application/DTOs/Security/CrearUsuarioRolRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WSCajaAhorros.Application/DTOs/Security/CrearUsuarioRolRequest.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WSCajaAhorros.Application/Interfaces/Repositories/Security/IUsuarioRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WSCajaAhorros.Application/Interfaces/Repositories/Security/IUsuarioRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WSCajaAhorros.Application/Interfaces/Services/Security/IUsuarioService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WSCajaAhorros.Application/Interfaces/Services/Security/IUsuarioService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WSCajaAhorros.Application/Interfaces/Services/Security/IAutenticacionService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WSCajaAhorros.Application/Interfaces/Services/Security/IAutenticacionService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WSCajaAhorros.Application/Services/Security/AutenticacionService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WSCajaAhorros.Application/Services/Security/AutenticacionService.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WSCajaAhorros.Application/Services/Security/UsuarioService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WSCajaAhorros.Application/Services/Security/UsuarioService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WSCajaAhorros.Application/WSCajaAhorros.Application.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/WSCajaAhorros.Application/WSCajaAhorros.Application.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WSCajaAhorros.Domain/Security/Usuario.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WSCajaAhorros.Domain/Security/Usuario.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WSCajaAhorros.Infrastructure/Repositories/Security/UsuarioRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WSCajaAhorros.Infrastructure/Repositories/Security/UsuarioRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WSCajaAhorros.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/WSCajaAhorros.sln.DotSettings.user" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,6 +34,7 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/653360951d920d52da53ce558f45615d62410b354f6c2385bc5252749e446f0/ApiBehaviorApplicationModelProvider.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/WSCajaAhorros.API/Controllers/AutenticacionController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/WSCajaAhorros.API/Controllers/HealthController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/WSCajaAhorros.API/Controllers/PermisosController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/WSCajaAhorros.API/Controllers/RolesController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/WSCajaAhorros.API/Controllers/UsuariosController.cs" root0="FORCE_HIGHLIGHTING" />
@@ -56,6 +47,7 @@
     <setting file="file://$PROJECT_DIR$/WSCajaAhorros.Application/DTOs/Security/CrearRolPermisoRequest.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/WSCajaAhorros.Application/DTOs/Security/CrearRolRequest.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/WSCajaAhorros.Application/DTOs/Security/CrearUsuarioRequest.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/WSCajaAhorros.Application/DTOs/Security/CrearUsuarioRolRequest.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/WSCajaAhorros.Application/DTOs/Security/LoginRequest.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/WSCajaAhorros.Application/DTOs/Security/LoginResponse.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/WSCajaAhorros.Application/Interfaces/Repositories/Security/IPermisoRepository.cs" root0="FORCE_HIGHLIGHTING" />
@@ -126,7 +118,7 @@
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/mateo/dotnet/sdk/10.0.101/MSBuild.dll&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/mateo/Documentos/GitHub/WSBancaVirtualSantaIsabel/BancaVirtual.sln&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -183,7 +175,8 @@
       <workItem from="1766129366300" duration="4208000" />
       <workItem from="1766436288407" duration="111000" />
       <workItem from="1766436433025" duration="11732000" />
-      <workItem from="1767596193367" duration="4206000" />
+      <workItem from="1767596193367" duration="5074000" />
+      <workItem from="1767855817116" duration="3350000" />
     </task>
     <servers />
   </component>

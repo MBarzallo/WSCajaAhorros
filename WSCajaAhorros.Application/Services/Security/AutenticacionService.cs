@@ -30,13 +30,16 @@ public class AutenticacionService : IAutenticacionService
                 return Response<LoginResponse>.Fail("Usuario o contraseña incorrectos");
 
             var jwt = _jwtService.GenerarToken(usuario, usuario.Roles.Select(r => r.Rol.Codigo));
+            
+            usuario.RegistrarInicioSesion();
 
+            await _usuarioRepository.SaveChangesAsync();
 
             var loginResponse = new LoginResponse()
             {
                 AccessToken = jwt,
                 ExpiresIn = 15 * 60,
-                Usuario = new()
+                Usuario = new UsuarioSesion()
                 {
                     Id = usuario.Id,
                     NombreUsuario = usuario.NombreUsuario,
@@ -49,6 +52,48 @@ public class AutenticacionService : IAutenticacionService
         catch (Exception ex)
         {
             return Response<LoginResponse>.Fail(ex.Message);
+        }
+    }
+
+    public async Task<Response> Activar(Guid usuarioId)
+    {
+        try
+        {
+            var usuario = await  _usuarioRepository.ObtenerPorId(usuarioId);
+            if (usuario == null)
+                return Response.Fail("El  usuario no existe");
+            
+            
+            usuario.Activar();
+            
+            await _usuarioRepository.SaveChangesAsync();
+            
+            return Response.Success();
+        }
+        catch (Exception ex)
+        {
+            return Response.Fail(ex.Message);
+        }
+    }
+    
+    public async Task<Response> Desactivar(Guid usuarioId)
+    {
+        try
+        {
+            var usuario = await  _usuarioRepository.ObtenerPorId(usuarioId);
+            if (usuario == null)
+                return Response.Fail("El  usuario no existe");
+            
+            
+            usuario.Desactivar();
+            
+            await _usuarioRepository.SaveChangesAsync();
+            
+            return Response.Success();
+        }
+        catch (Exception ex)
+        {
+            return Response.Fail(ex.Message);
         }
     }
 }
