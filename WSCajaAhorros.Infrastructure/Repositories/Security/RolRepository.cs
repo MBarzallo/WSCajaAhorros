@@ -29,6 +29,12 @@ public class RolRepository: IRolRepository
         _dbContext.Roles.Add(rol);
         await _dbContext.SaveChangesAsync();
     }
+
+    public async Task AgregarRolPermiso(RolPermiso permiso)
+    {
+        _dbContext.RolPermisos.Add(permiso);
+        await _dbContext.SaveChangesAsync();
+    }
     
     
 }
