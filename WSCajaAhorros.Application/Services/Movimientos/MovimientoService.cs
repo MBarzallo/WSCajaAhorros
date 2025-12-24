@@ -3,6 +3,7 @@ using WSCajaAhorros.Application.DTOs.Movimientos;
 using WSCajaAhorros.Application.Interfaces.Repositories.Movimientos;
 using WSCajaAhorros.Application.Interfaces.Services.Cuentas;
 using WSCajaAhorros.Application.Interfaces.Services.Movimientos;
+using WSCajaAhorros.Application.Interfaces.Services.Security;
 using WSCajaAhorros.Domain.Common;
 using WSCajaAhorros.Domain.Cuentas;
 using WSCajaAhorros.Domain.Movimientos;
@@ -13,22 +14,26 @@ public class MovimientoService : IMovimientosService
 {
     private readonly IMovimientoRepository _movimientoRepository;
     private readonly ICuentaRepository _cuentaRepository;
+    private readonly IUsuarioActualService _usuarioActual;
 
     public MovimientoService(
         IMovimientoRepository movimientoRepository,
-        ICuentaRepository cuentaRepository)
+        ICuentaRepository cuentaRepository,
+        IUsuarioActualService usuarioActual)
     {
         _movimientoRepository = movimientoRepository;
         _cuentaRepository = cuentaRepository;
+        _usuarioActual = usuarioActual;
     }
 
-    public async Task<Response> Deposito(CrearMovimientoRequest request, Guid usuarioId)
+    public async Task<Response> Deposito(CrearMovimientoRequest request)
     {
         if (request.Monto <= 0)
             return Response.Fail("El monto debe ser mayor a cero");
 
         try
         {
+            Guid usuarioId = _usuarioActual.ObtenerUsuarioId();
             await _cuentaRepository.EjecutarTransaccionAsync(async () =>
             {
                 var cuenta = await _cuentaRepository.ObtenerPorIdAsync(request.CuentaId);
@@ -65,13 +70,14 @@ public class MovimientoService : IMovimientosService
     // ============================
     // RETIRO
     // ============================
-    public async Task<Response> Retiro(CrearMovimientoRequest request, Guid usuarioId)
+    public async Task<Response> Retiro(CrearMovimientoRequest request)
     {
         if (request.Monto <= 0)
             return Response.Fail("El monto debe ser mayor a cero");
 
         try
         {
+            Guid usuarioId = _usuarioActual.ObtenerUsuarioId();
             await _cuentaRepository.EjecutarTransaccionAsync(async () =>
             {
                 var cuenta = await _cuentaRepository.ObtenerPorIdAsync(request.CuentaId);

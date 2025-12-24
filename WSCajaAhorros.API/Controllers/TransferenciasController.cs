@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WSCajaAhorros.Application.DTOs.Movimientos;
 using WSCajaAhorros.Application.Services.Movimientos;
@@ -15,11 +16,11 @@ public class TransferenciasController : ControllerBase
         _transferenciaService = transferenciaService;
     }
 
+    [Authorize]
     [HttpPost]
     public async Task<IActionResult> Transferir([FromBody] CrearTransferenciaRequest request)
     {
-        var usuarioId = Guid.NewGuid(); // luego sale del JWT
-        var response = await _transferenciaService.Transferir(request, usuarioId);
+        var response = await _transferenciaService.Transferir(request);
         return Ok(response);
     }
 }

@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WSCajaAhorros.Application.DTOs.Movimientos;
 using WSCajaAhorros.Application.Interfaces.Services.Movimientos;
@@ -15,21 +16,21 @@ public class MovimientosController : ControllerBase
         _movimientoService = movimientoService;
     }
 
+    [Authorize]
     [HttpPost("deposito")]
     public async Task<IActionResult> Deposito(
         [FromBody] CrearMovimientoRequest request)
     {
-        var usuarioId = Guid.NewGuid(); // luego lo sacas del JWT
-        var response = await _movimientoService.Deposito(request, usuarioId);
+        var response = await _movimientoService.Deposito(request);
         return Ok(response);
     }
 
+    [Authorize]
     [HttpPost("retiro")]
     public async Task<IActionResult> Retiro(
         [FromBody] CrearMovimientoRequest request)
     {
-        var usuarioId = Guid.NewGuid();
-        var response = await _movimientoService.Retiro(request, usuarioId);
+        var response = await _movimientoService.Retiro(request);
         return Ok(response);
     }
 

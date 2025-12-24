@@ -6,7 +6,7 @@ using WSCajaAhorros.Domain.Cuentas;
 
 namespace WSCajaAhorros.Application.Services.Cuentas;
 
-public class CuentaService
+public class CuentaService : ICuentaService
 {
     private readonly ICuentaRepository _cuentaRepository;
     private readonly ISocioRepository _socioRepository;

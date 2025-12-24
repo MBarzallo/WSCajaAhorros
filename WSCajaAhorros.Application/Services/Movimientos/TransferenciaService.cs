@@ -3,6 +3,7 @@ using WSCajaAhorros.Application.DTOs.Movimientos;
 using WSCajaAhorros.Application.Interfaces.Repositories.Movimientos;
 using WSCajaAhorros.Application.Interfaces.Services.Cuentas;
 using WSCajaAhorros.Application.Interfaces.Services.Movimientos;
+using WSCajaAhorros.Application.Interfaces.Services.Security;
 using WSCajaAhorros.Domain.Common;
 using WSCajaAhorros.Domain.Cuentas;
 using WSCajaAhorros.Domain.Movimientos;
@@ -14,18 +15,22 @@ public class TransferenciaService : ITransferenciaService
     private readonly ICuentaRepository _cuentaRepository;
     private readonly IMovimientoRepository _movimientoRepository;
     private readonly ITransferenciaRepository _transferenciaRepository;
+    private readonly IUsuarioActualService _usuarioActual;
+    
 
     public TransferenciaService(
         ICuentaRepository cuentaRepository,
         IMovimientoRepository movimientoRepository,
-        ITransferenciaRepository transferenciaRepository)
+        ITransferenciaRepository transferenciaRepository,
+        IUsuarioActualService usuarioActual)
     {
         _cuentaRepository = cuentaRepository;
         _movimientoRepository = movimientoRepository;
         _transferenciaRepository = transferenciaRepository;
+        _usuarioActual = usuarioActual;
     }
 
-    public async Task<Response> Transferir(CrearTransferenciaRequest request, Guid usuarioId)
+    public async Task<Response> Transferir(CrearTransferenciaRequest request)
     {
         if (request.Monto <= 0)
             return Response.Fail("El monto debe ser mayor a cero");
@@ -35,6 +40,7 @@ public class TransferenciaService : ITransferenciaService
 
         try
         {
+            Guid usuarioId = _usuarioActual.ObtenerUsuarioId();
             await _cuentaRepository.EjecutarTransaccionAsync(async () =>
             {
                 var cuentaOrigen = await _cuentaRepository.ObtenerPorIdAsync(request.CuentaOrigenId);
