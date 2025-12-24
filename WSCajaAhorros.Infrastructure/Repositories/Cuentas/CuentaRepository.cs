@@ -54,5 +54,23 @@ public class CuentaRepository : ICuentaRepository
     {
         await _context.SaveChangesAsync();
     }
+    public async Task GuardarCambiosAsync()
+        => await _context.SaveChangesAsync();
+
+    public async Task EjecutarTransaccionAsync(Func<Task> operacion)
+    {
+        using var tx = await _context.Database.BeginTransactionAsync();
+        try
+        {
+            await operacion();
+            await _context.SaveChangesAsync();
+            await tx.CommitAsync();
+        }
+        catch
+        {
+            await tx.RollbackAsync();
+            throw;
+        }
+    }
 
 }

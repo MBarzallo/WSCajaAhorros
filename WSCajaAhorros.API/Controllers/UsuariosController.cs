@@ -28,4 +28,11 @@ public class UsuariosController : ControllerBase
         var response = await _usuarioService.CrearUsuario(request);
         return Ok(response);
     }
+
+    [HttpPost("rol/{userId}")]
+    public async Task<IActionResult> AsignarRol(Guid userId, [FromBody] CrearUsuarioRolRequest request)
+    {
+        var response = await _usuarioService.CrearUsuarioRol(userId, request);
+        return Ok(response);
+    }
 }

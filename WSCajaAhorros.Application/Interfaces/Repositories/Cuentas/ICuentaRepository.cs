@@ -16,4 +16,6 @@ public interface ICuentaRepository
     Task ActualizarAsync(Cuenta cuenta);
 
     Task SaveChangesAsync();
+    Task GuardarCambiosAsync();
+    Task EjecutarTransaccionAsync(Func<Task> operacion);
 }
