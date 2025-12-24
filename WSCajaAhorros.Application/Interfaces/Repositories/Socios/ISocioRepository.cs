@@ -6,5 +6,6 @@ public interface ISocioRepository
 {
     Task Crear(Socio socio);
     Task<Socio?> ObtenerPorIdentificacion(string identificacion);
+    Task<Socio?> ObtenerPorId(Guid id);
     Task SaveChangesAsync();
 }

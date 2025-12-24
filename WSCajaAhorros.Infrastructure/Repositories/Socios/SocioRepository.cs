@@ -25,6 +25,12 @@ public class SocioRepository : ISocioRepository
         var socio = await _dbContext.Socios.FirstOrDefaultAsync(s=>s.Identificacion.Numero==identificacion);
         return socio;
     }
+
+    public async Task<Socio?> ObtenerPorId(Guid id)
+    {
+        var socio = await _dbContext.Socios.FirstOrDefaultAsync(s => s.Id == id);
+        return socio;
+    }
     
     public Task SaveChangesAsync()
     {
