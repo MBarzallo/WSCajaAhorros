@@ -9,16 +9,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="17dff95b-ed7a-45e6-b205-41858a6fe460" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/WSCajaAhorros.API/Controllers/CuentasController.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WSCajaAhorros.Application/DTOs/Cuentas/CrearCuentaRequessst.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WSCajaAhorros.Application/DTOs/Cuentas/CuentaResponse.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WSCajaAhorros.Application/Interfaces/Repositories/Cuentas/ICuentaRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WSCajaAhorros.Application/Interfaces/Services/Cuentas/ICuentaService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WSCajaAhorros.Application/Services/Cuentas/CuentaService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WSCajaAhorros.Infrastructure/Repositories/Cuentas/CuentaRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WSCajaAhorros.Application/DTOs/Cuentas/CrearProductoCuentaRequest.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WSCajaAhorros.Application/Interfaces/Repositories/Cuentas/IProductoCuentaRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WSCajaAhorros.Application/Interfaces/Services/Cuentas/IProductoCuentaService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WSCajaAhorros.Application/Services/Cuentas/ProductoCuentaService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WSCajaAhorros.Infrastructure/Repositories/Cuentas/ProductoCuentaRepository.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.WSCajaAhorros/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.WSCajaAhorros/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WSCajaAhorros.Application/Interfaces/Repositories/Socios/ISocioRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WSCajaAhorros.Application/Interfaces/Repositories/Socios/ISocioRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WSCajaAhorros.Infrastructure/Repositories/Socios/SocioRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WSCajaAhorros.Infrastructure/Repositories/Socios/SocioRepository.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,6 +45,7 @@
     <setting file="file://$PROJECT_DIR$/WSCajaAhorros.Application/Common/Validators/SocioValidator.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/WSCajaAhorros.Application/Common/Validators/UsernameValidator.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/WSCajaAhorros.Application/DTOs/Cuentas/CrearCuentaRequessst.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/WSCajaAhorros.Application/DTOs/Cuentas/CrearProductoCuentaRequest.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/WSCajaAhorros.Application/DTOs/Cuentas/CuentaResponse.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/WSCajaAhorros.Application/DTOs/Security/CrearRolPermisoRequest.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/WSCajaAhorros.Application/DTOs/Security/CrearRolRequest.cs" root0="FORCE_HIGHLIGHTING" />
@@ -57,17 +54,20 @@
     <setting file="file://$PROJECT_DIR$/WSCajaAhorros.Application/DTOs/Security/LoginRequest.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/WSCajaAhorros.Application/DTOs/Security/LoginResponse.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/WSCajaAhorros.Application/Interfaces/Repositories/Cuentas/ICuentaRepository.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/WSCajaAhorros.Application/Interfaces/Repositories/Cuentas/IProductoCuentaRepository.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/WSCajaAhorros.Application/Interfaces/Repositories/Security/IPermisoRepository.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/WSCajaAhorros.Application/Interfaces/Repositories/Security/IRolRepository.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/WSCajaAhorros.Application/Interfaces/Repositories/Security/IUsuarioRepository.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/WSCajaAhorros.Application/Interfaces/Repositories/Socios/ISocioRepository.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/WSCajaAhorros.Application/Interfaces/Services/Cuentas/ICuentaService.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/WSCajaAhorros.Application/Interfaces/Services/Cuentas/IProductoCuentaService.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/WSCajaAhorros.Application/Interfaces/Services/Security/IAutenticacionService.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/WSCajaAhorros.Application/Interfaces/Services/Security/IPermisoService.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/WSCajaAhorros.Application/Interfaces/Services/Security/IRolService.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/WSCajaAhorros.Application/Interfaces/Services/Security/IUsuarioService.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/WSCajaAhorros.Application/Interfaces/Services/Socios/ISociosService.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/WSCajaAhorros.Application/Services/Cuentas/CuentaService.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/WSCajaAhorros.Application/Services/Cuentas/ProductoCuentaService.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/WSCajaAhorros.Application/Services/Security/AutenticacionService.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/WSCajaAhorros.Application/Services/Security/PermisoService.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/WSCajaAhorros.Application/Services/Security/RolService.cs" root0="FORCE_HIGHLIGHTING" />
@@ -107,6 +107,7 @@
     <setting file="file://$PROJECT_DIR$/WSCajaAhorros.Infrastructure/Persistence/Configurations/Socios/SocioConfiguration.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/WSCajaAhorros.Infrastructure/Persistence/Configurations/Socios/TelefonoSocioConfiguration.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/WSCajaAhorros.Infrastructure/Repositories/Cuentas/CuentaRepository.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/WSCajaAhorros.Infrastructure/Repositories/Cuentas/ProductoCuentaRepository.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/WSCajaAhorros.Infrastructure/Repositories/Security/PermisoRepository.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/WSCajaAhorros.Infrastructure/Repositories/Security/RolRepository.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/WSCajaAhorros.Infrastructure/Repositories/Security/UsuarioRepository.cs" root0="FORCE_HIGHLIGHTING" />
@@ -191,7 +192,7 @@
       <workItem from="1766436433025" duration="11732000" />
       <workItem from="1767596193367" duration="5074000" />
       <workItem from="1767855817116" duration="3350000" />
-      <workItem from="1768269332131" duration="3505000" />
+      <workItem from="1768269332131" duration="4172000" />
     </task>
     <servers />
   </component>
