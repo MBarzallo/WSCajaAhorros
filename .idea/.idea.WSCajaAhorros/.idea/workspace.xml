@@ -9,18 +9,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="17dff95b-ed7a-45e6-b205-41858a6fe460" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/WSCajaAhorros.Application/Interfaces/Services/Security/IUsuarioActualService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WSCajaAhorros.Application/Services/Security/UsuarioActualService.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.WSCajaAhorros/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.WSCajaAhorros/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WSCajaAhorros.API/Controllers/MovimientosController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WSCajaAhorros.API/Controllers/MovimientosController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WSCajaAhorros.API/Controllers/TransferenciasController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WSCajaAhorros.API/Controllers/TransferenciasController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WSCajaAhorros.API/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WSCajaAhorros.API/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WSCajaAhorros.Application/Interfaces/Services/Movimientos/IMovimientosService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WSCajaAhorros.Application/Interfaces/Services/Movimientos/IMovimientosService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WSCajaAhorros.Application/Interfaces/Services/Movimientos/ITransferenciaService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WSCajaAhorros.Application/Interfaces/Services/Movimientos/ITransferenciaService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WSCajaAhorros.Application/Services/Cuentas/CuentaService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WSCajaAhorros.Application/Services/Cuentas/CuentaService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WSCajaAhorros.Application/Services/Movimientos/MovimientoService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WSCajaAhorros.Application/Services/Movimientos/MovimientoService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WSCajaAhorros.Application/Services/Movimientos/TransferenciaService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WSCajaAhorros.Application/Services/Movimientos/TransferenciaService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WSCajaAhorros.Application/WSCajaAhorros.Application.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/WSCajaAhorros.Application/WSCajaAhorros.Application.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WSCajaAhorros.sln" beforeDir="false" afterPath="$PROJECT_DIR$/WSCajaAhorros.sln" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -214,7 +204,7 @@
       <workItem from="1766436433025" duration="11732000" />
       <workItem from="1767596193367" duration="5074000" />
       <workItem from="1767855817116" duration="3350000" />
-      <workItem from="1768269332131" duration="7549000" />
+      <workItem from="1768269332131" duration="8967000" />
     </task>
     <servers />
   </component>
