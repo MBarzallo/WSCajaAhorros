@@ -30,8 +30,4 @@
     <ProjectReference Include="..\WSCajaAhorros.Domain\WSCajaAhorros.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Cuentas\" />
-  </ItemGroup>
-
 </Project>
