@@ -32,7 +32,6 @@
 
   <ItemGroup>
     <Folder Include="Cuentas\" />
-    <Folder Include="Roles\" />
     <Folder Include="Socios\" />
   </ItemGroup>
 

@@ -8,10 +8,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="17dff95b-ed7a-45e6-b205-41858a6fe460" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.WSCajaAhorros/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.WSCajaAhorros/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WSCajaAhorros.sln" beforeDir="false" afterPath="$PROJECT_DIR$/WSCajaAhorros.sln" afterDir="false" />
-    </list>
+    <list default="true" id="17dff95b-ed7a-45e6-b205-41858a6fe460" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -124,6 +121,7 @@
     <setting file="file://$PROJECT_DIR$/WSCajaAhorros.Infrastructure/Repositories/Security/RolRepository.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/WSCajaAhorros.Infrastructure/Repositories/Security/UsuarioRepository.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/WSCajaAhorros.Infrastructure/Repositories/Socios/SocioRepository.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/WSCajaAhorros.Tests/Security/UsuarioServiceTest.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
@@ -204,7 +202,7 @@
       <workItem from="1766436433025" duration="11732000" />
       <workItem from="1767596193367" duration="5074000" />
       <workItem from="1767855817116" duration="3350000" />
-      <workItem from="1768269332131" duration="8967000" />
+      <workItem from="1768269332131" duration="9306000" />
     </task>
     <servers />
   </component>
