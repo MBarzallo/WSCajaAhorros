@@ -28,4 +28,11 @@ public class RolesController:ControllerBase
         var response = await _rolService.Agregar(request);
         return Ok(response);
     }
+
+    [HttpPost("permiso")]
+    public async Task<IActionResult> AgregarPermiso([FromBody] CrearRolPermisoRequest request)
+    {
+        var response = await _rolService.AgregarRolPermiso(request);
+        return Ok(response);
+    }
 }

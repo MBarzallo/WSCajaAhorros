@@ -9,4 +9,5 @@ public interface IRolService
     Task<Response<List<Rol>>> ObtenerTodos();
 
     Task<Response> Agregar(CrearRolRequest request);
+    Task<Response> AgregarRolPermiso(CrearRolPermisoRequest request);
 }

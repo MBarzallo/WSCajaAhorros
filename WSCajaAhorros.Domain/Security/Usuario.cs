@@ -41,6 +41,11 @@ public class Usuario
         FechaCreacion = DateTime.UtcNow;
     }
 
+    public void AgregarRol(UsuarioRol usuarioRol)
+    {
+        _roles.Add(usuarioRol);
+    }
+
     public void RegistrarInicioSesion()
     {
         UltimoInicioSesion = DateTime.UtcNow;

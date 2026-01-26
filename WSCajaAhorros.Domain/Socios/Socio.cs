@@ -15,7 +15,7 @@ public class Socio
     public string? NombreComercial { get; private set; }
     public DateOnly? FechaConstitucion { get; private set; }
 
-    public bool EstaActivo { get; private set; }
+    public bool EstaActivo { get; private set; }    
     public DateTime FechaIngreso { get; private set; }
     public DateTime? FechaActualizacion { get; private set; }
 

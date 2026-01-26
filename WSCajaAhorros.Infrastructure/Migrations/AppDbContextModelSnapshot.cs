@@ -22,53 +22,304 @@ namespace WSCajaAhorros.Infrastructure.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
+            modelBuilder.Entity("WSCajaAhorros.Domain.Contabilidad.AsientoContable", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
+
+                    b.Property<string>("Descripcion")
+                        .IsRequired()
+                        .HasMaxLength(300)
+                        .HasColumnType("character varying(300)")
+                        .HasColumnName("descripcion");
+
+                    b.Property<int>("Estado")
+                        .HasColumnType("integer")
+                        .HasColumnName("estado");
+
+                    b.Property<DateTime>("FechaContable")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("fecha_contable");
+
+                    b.Property<DateTime>("FechaCreacion")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("fecha_creacion");
+
+                    b.Property<Guid>("ReferenciaOperacionId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("referencia_operacion_id");
+
+                    b.Property<int>("TipoOperacion")
+                        .HasColumnType("integer")
+                        .HasColumnName("tipo_operacion");
+
+                    b.Property<Guid>("UsuarioId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("usuario_id");
+
+                    b.HasKey("Id")
+                        .HasName("pk_asientos_contables");
+
+                    b.HasIndex("Estado")
+                        .HasDatabaseName("ix_asientos_contables_estado");
+
+                    b.HasIndex("FechaContable")
+                        .HasDatabaseName("ix_asientos_contables_fecha_contable");
+
+                    b.HasIndex("ReferenciaOperacionId")
+                        .HasDatabaseName("ix_asientos_contables_referencia_operacion_id");
+
+                    b.HasIndex("TipoOperacion")
+                        .HasDatabaseName("ix_asientos_contables_tipo_operacion");
+
+                    b.ToTable("asientos_contables", (string)null);
+                });
+
             modelBuilder.Entity("WSCajaAhorros.Domain.Cuentas.Cuenta", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
 
                     b.Property<int>("Estado")
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("estado");
 
                     b.Property<DateTime>("FechaApertura")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("fecha_apertura");
 
                     b.Property<string>("NumeroCuenta")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)")
+                        .HasColumnName("numero_cuenta");
 
                     b.Property<Guid>("ProductoCuentaId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uuid")
+                        .HasColumnName("producto_cuenta_id");
 
                     b.Property<Guid>("SocioId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uuid")
+                        .HasColumnName("socio_id");
 
-                    b.HasKey("Id");
+                    b.HasKey("Id")
+                        .HasName("pk_cuentas");
 
-                    b.ToTable("Cuentas");
+                    b.HasIndex("NumeroCuenta")
+                        .IsUnique()
+                        .HasDatabaseName("ix_cuentas_numero_cuenta");
+
+                    b.ToTable("cuentas", (string)null);
+                });
+
+            modelBuilder.Entity("WSCajaAhorros.Domain.Movimientos.Movimiento", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
+
+                    b.Property<Guid?>("AsientoContableId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("asiento_contable_id");
+
+                    b.Property<string>("Canal")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)")
+                        .HasColumnName("canal");
+
+                    b.Property<Guid>("CuentaId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("cuenta_id");
+
+                    b.Property<string>("Descripcion")
+                        .IsRequired()
+                        .HasMaxLength(250)
+                        .HasColumnType("character varying(250)")
+                        .HasColumnName("descripcion");
+
+                    b.Property<string>("DireccionIp")
+                        .HasMaxLength(45)
+                        .HasColumnType("character varying(45)")
+                        .HasColumnName("direccion_ip");
+
+                    b.Property<DateTime>("FechaOperacion")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("fecha_operacion");
+
+                    b.Property<int>("Tipo")
+                        .HasColumnType("integer")
+                        .HasColumnName("tipo");
+
+                    b.Property<Guid?>("TransferenciaId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("transferencia_id");
+
+                    b.Property<Guid>("UsuarioId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("usuario_id");
+
+                    b.HasKey("Id")
+                        .HasName("pk_movimientos");
+
+                    b.HasIndex("CuentaId")
+                        .HasDatabaseName("ix_movimientos_cuenta_id");
+
+                    b.HasIndex("FechaOperacion")
+                        .HasDatabaseName("ix_movimientos_fecha_operacion");
+
+                    b.HasIndex("TransferenciaId")
+                        .HasDatabaseName("ix_movimientos_transferencia_id");
+
+                    b.ToTable("movimientos", (string)null);
+                });
+
+            modelBuilder.Entity("WSCajaAhorros.Domain.Movimientos.Transferencia", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
+
+                    b.Property<string>("Canal")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)")
+                        .HasColumnName("canal");
+
+                    b.Property<string>("CodigoOperacion")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)")
+                        .HasColumnName("codigo_operacion");
+
+                    b.Property<Guid>("CuentaDestinoId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("cuenta_destino_id");
+
+                    b.Property<Guid>("CuentaOrigenId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("cuenta_origen_id");
+
+                    b.Property<string>("DireccionIp")
+                        .HasMaxLength(45)
+                        .HasColumnType("character varying(45)")
+                        .HasColumnName("direccion_ip");
+
+                    b.Property<DateTime>("FechaOperacion")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("fecha_operacion");
+
+                    b.Property<string>("Observacion")
+                        .IsRequired()
+                        .HasMaxLength(250)
+                        .HasColumnType("character varying(250)")
+                        .HasColumnName("observacion");
+
+                    b.Property<Guid>("UsuarioId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("usuario_id");
+
+                    b.HasKey("Id")
+                        .HasName("pk_transferencias");
+
+                    b.HasIndex("CodigoOperacion")
+                        .IsUnique()
+                        .HasDatabaseName("ix_transferencias_codigo_operacion");
+
+                    b.HasIndex("CuentaDestinoId")
+                        .HasDatabaseName("ix_transferencias_cuenta_destino_id");
+
+                    b.HasIndex("CuentaOrigenId")
+                        .HasDatabaseName("ix_transferencias_cuenta_origen_id");
+
+                    b.HasIndex("FechaOperacion")
+                        .HasDatabaseName("ix_transferencias_fecha_operacion");
+
+                    b.ToTable("transferencias", (string)null);
+                });
+
+            modelBuilder.Entity("WSCajaAhorros.Domain.Productos.ProductoCuenta", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
+
+                    b.Property<string>("Codigo")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("character varying(10)")
+                        .HasColumnName("codigo");
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)")
+                        .HasColumnName("nombre");
+
+                    b.Property<bool>("PermiteRetiros")
+                        .HasColumnType("boolean")
+                        .HasColumnName("permite_retiros");
+
+                    b.Property<bool>("PermiteTransferencias")
+                        .HasColumnType("boolean")
+                        .HasColumnName("permite_transferencias");
+
+                    b.Property<decimal>("SaldoMinimo")
+                        .HasPrecision(18, 2)
+                        .HasColumnType("numeric(18,2)")
+                        .HasColumnName("saldo_minimo");
+
+                    b.Property<decimal>("TasaInteres")
+                        .HasPrecision(5, 4)
+                        .HasColumnType("numeric(5,4)")
+                        .HasColumnName("tasa_interes");
+
+                    b.Property<int>("Tipo")
+                        .HasColumnType("integer")
+                        .HasColumnName("tipo");
+
+                    b.HasKey("Id")
+                        .HasName("pk_productos_cuenta");
+
+                    b.HasIndex("Codigo")
+                        .IsUnique()
+                        .HasDatabaseName("ix_productos_cuenta_codigo");
+
+                    b.ToTable("productos_cuenta", (string)null);
                 });
 
             modelBuilder.Entity("WSCajaAhorros.Domain.Security.Permiso", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
 
                     b.Property<string>("Codigo")
                         .IsRequired()
                         .HasMaxLength(100)
-                        .HasColumnType("character varying(100)");
+                        .HasColumnType("character varying(100)")
+                        .HasColumnName("codigo");
 
                     b.Property<string>("Descripcion")
                         .IsRequired()
                         .HasMaxLength(200)
-                        .HasColumnType("character varying(200)");
+                        .HasColumnType("character varying(200)")
+                        .HasColumnName("descripcion");
 
-                    b.HasKey("Id");
+                    b.HasKey("Id")
+                        .HasName("pk_permisos");
 
                     b.HasIndex("Codigo")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasDatabaseName("ix_permisos_codigo");
 
                     b.ToTable("permisos", (string)null);
                 });
@@ -77,22 +328,27 @@ namespace WSCajaAhorros.Infrastructure.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
 
                     b.Property<string>("Codigo")
                         .IsRequired()
                         .HasMaxLength(50)
-                        .HasColumnType("character varying(50)");
+                        .HasColumnType("character varying(50)")
+                        .HasColumnName("codigo");
 
                     b.Property<string>("Descripcion")
                         .IsRequired()
                         .HasMaxLength(150)
-                        .HasColumnType("character varying(150)");
+                        .HasColumnType("character varying(150)")
+                        .HasColumnName("descripcion");
 
-                    b.HasKey("Id");
+                    b.HasKey("Id")
+                        .HasName("pk_roles");
 
                     b.HasIndex("Codigo")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasDatabaseName("ix_roles_codigo");
 
                     b.ToTable("roles", (string)null);
                 });
@@ -100,14 +356,18 @@ namespace WSCajaAhorros.Infrastructure.Migrations
             modelBuilder.Entity("WSCajaAhorros.Domain.Security.RolPermiso", b =>
                 {
                     b.Property<Guid>("RolId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uuid")
+                        .HasColumnName("rol_id");
 
                     b.Property<Guid>("PermisoId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uuid")
+                        .HasColumnName("permiso_id");
 
-                    b.HasKey("RolId", "PermisoId");
+                    b.HasKey("RolId", "PermisoId")
+                        .HasName("pk_roles_permisos");
 
-                    b.HasIndex("PermisoId");
+                    b.HasIndex("PermisoId")
+                        .HasDatabaseName("ix_roles_permisos_permiso_id");
 
                     b.ToTable("roles_permisos", (string)null);
                 });
@@ -116,45 +376,57 @@ namespace WSCajaAhorros.Infrastructure.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
 
                     b.Property<string>("CorreoElectronico")
                         .IsRequired()
                         .HasMaxLength(150)
-                        .HasColumnType("character varying(150)");
+                        .HasColumnType("character varying(150)")
+                        .HasColumnName("correo_electronico");
 
                     b.Property<bool>("EstaActivo")
-                        .HasColumnType("boolean");
+                        .HasColumnType("boolean")
+                        .HasColumnName("esta_activo");
 
                     b.Property<DateTime>("FechaCreacion")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("fecha_creacion");
 
                     b.Property<string>("HashContrasena")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("hash_contrasena");
 
                     b.Property<bool>("MfaHabilitado")
-                        .HasColumnType("boolean");
+                        .HasColumnType("boolean")
+                        .HasColumnName("mfa_habilitado");
 
                     b.Property<string>("NombreUsuario")
                         .IsRequired()
                         .HasMaxLength(50)
-                        .HasColumnType("character varying(50)");
+                        .HasColumnType("character varying(50)")
+                        .HasColumnName("nombre_usuario");
 
                     b.Property<string>("SaltContrasena")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("salt_contrasena");
 
                     b.Property<DateTime?>("UltimoInicioSesion")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("ultimo_inicio_sesion");
 
-                    b.HasKey("Id");
+                    b.HasKey("Id")
+                        .HasName("pk_usuarios");
 
                     b.HasIndex("CorreoElectronico")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasDatabaseName("ix_usuarios_correo_electronico");
 
                     b.HasIndex("NombreUsuario")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasDatabaseName("ix_usuarios_nombre_usuario");
 
                     b.ToTable("usuarios", (string)null);
                 });
@@ -163,32 +435,42 @@ namespace WSCajaAhorros.Infrastructure.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
 
                     b.Property<bool>("Activo")
-                        .HasColumnType("boolean");
+                        .HasColumnType("boolean")
+                        .HasColumnName("activo");
 
                     b.Property<int>("DiaSemana")
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("dia_semana");
 
                     b.Property<DateOnly?>("FechaFin")
-                        .HasColumnType("date");
+                        .HasColumnType("date")
+                        .HasColumnName("fecha_fin");
 
                     b.Property<DateOnly?>("FechaInicio")
-                        .HasColumnType("date");
+                        .HasColumnType("date")
+                        .HasColumnName("fecha_inicio");
 
                     b.Property<TimeSpan>("HoraFin")
-                        .HasColumnType("interval");
+                        .HasColumnType("interval")
+                        .HasColumnName("hora_fin");
 
                     b.Property<TimeSpan>("HoraInicio")
-                        .HasColumnType("interval");
+                        .HasColumnType("interval")
+                        .HasColumnName("hora_inicio");
 
                     b.Property<Guid>("UsuarioId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uuid")
+                        .HasColumnName("usuario_id");
 
-                    b.HasKey("Id");
+                    b.HasKey("Id")
+                        .HasName("pk_usuarios_accesos_horarios");
 
-                    b.HasIndex("UsuarioId", "DiaSemana", "HoraInicio", "HoraFin");
+                    b.HasIndex("UsuarioId", "DiaSemana", "HoraInicio", "HoraFin")
+                        .HasDatabaseName("ix_usuarios_accesos_horarios_usuario_id_dia_semana_hora_inicio");
 
                     b.ToTable("usuarios_accesos_horarios", (string)null);
                 });
@@ -196,14 +478,18 @@ namespace WSCajaAhorros.Infrastructure.Migrations
             modelBuilder.Entity("WSCajaAhorros.Domain.Security.UsuarioRol", b =>
                 {
                     b.Property<Guid>("UsuarioId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uuid")
+                        .HasColumnName("usuario_id");
 
                     b.Property<Guid>("RolId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uuid")
+                        .HasColumnName("rol_id");
 
-                    b.HasKey("UsuarioId", "RolId");
+                    b.HasKey("UsuarioId", "RolId")
+                        .HasName("pk_usuarios_roles");
 
-                    b.HasIndex("RolId");
+                    b.HasIndex("RolId")
+                        .HasDatabaseName("ix_usuarios_roles_rol_id");
 
                     b.ToTable("usuarios_roles", (string)null);
                 });
@@ -212,124 +498,197 @@ namespace WSCajaAhorros.Infrastructure.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
 
                     b.Property<string>("CorreoElectronico")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(150)
+                        .HasColumnType("character varying(150)")
+                        .HasColumnName("correo_electronico");
 
                     b.Property<bool>("EsPrincipal")
-                        .HasColumnType("boolean");
+                        .HasColumnType("boolean")
+                        .HasColumnName("es_principal");
 
                     b.Property<bool>("EstaActivo")
-                        .HasColumnType("boolean");
+                        .HasColumnType("boolean")
+                        .HasColumnName("esta_activo");
 
                     b.Property<string>("Etiqueta")
-                        .HasColumnType("text");
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)")
+                        .HasColumnName("etiqueta");
 
                     b.Property<Guid>("SocioId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uuid")
+                        .HasColumnName("socio_id");
 
-                    b.HasKey("Id");
+                    b.HasKey("Id")
+                        .HasName("pk_socios_correos");
 
-                    b.HasIndex("SocioId");
+                    b.HasIndex("CorreoElectronico")
+                        .HasDatabaseName("ix_socios_correos_correo_electronico");
 
-                    b.ToTable("CorreoSocio");
+                    b.HasIndex("SocioId")
+                        .HasDatabaseName("ix_socios_correos_socio_id");
+
+                    b.ToTable("socios_correos", (string)null);
                 });
 
             modelBuilder.Entity("WSCajaAhorros.Domain.Socios.DireccionSocio", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
 
                     b.Property<bool>("EsPrincipal")
-                        .HasColumnType("boolean");
+                        .HasColumnType("boolean")
+                        .HasColumnName("es_principal");
 
                     b.Property<bool>("EstaActiva")
-                        .HasColumnType("boolean");
+                        .HasColumnType("boolean")
+                        .HasColumnName("esta_activa");
 
                     b.Property<string>("Etiqueta")
-                        .HasColumnType("text");
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)")
+                        .HasColumnName("etiqueta");
 
                     b.Property<Guid>("SocioId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uuid")
+                        .HasColumnName("socio_id");
 
-                    b.HasKey("Id");
+                    b.HasKey("Id")
+                        .HasName("pk_socios_direcciones");
 
-                    b.HasIndex("SocioId");
+                    b.HasIndex("SocioId")
+                        .HasDatabaseName("ix_socios_direcciones_socio_id");
 
-                    b.ToTable("DireccionSocio");
+                    b.ToTable("socios_direcciones", (string)null);
                 });
 
             modelBuilder.Entity("WSCajaAhorros.Domain.Socios.Socio", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
 
                     b.Property<string>("Apellidos")
-                        .HasColumnType("text");
+                        .HasMaxLength(150)
+                        .HasColumnType("character varying(150)")
+                        .HasColumnName("apellidos");
 
                     b.Property<bool>("EstaActivo")
-                        .HasColumnType("boolean");
+                        .HasColumnType("boolean")
+                        .HasColumnName("esta_activo");
 
                     b.Property<DateTime?>("FechaActualizacion")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("fecha_actualizacion");
 
                     b.Property<DateOnly?>("FechaConstitucion")
-                        .HasColumnType("date");
+                        .HasColumnType("date")
+                        .HasColumnName("fecha_constitucion");
 
                     b.Property<DateTime>("FechaIngreso")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("fecha_ingreso");
 
                     b.Property<DateOnly?>("FechaNacimiento")
-                        .HasColumnType("date");
+                        .HasColumnType("date")
+                        .HasColumnName("fecha_nacimiento");
 
                     b.Property<string>("NombreComercial")
-                        .HasColumnType("text");
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)")
+                        .HasColumnName("nombre_comercial");
 
                     b.Property<string>("Nombres")
-                        .HasColumnType("text");
+                        .HasMaxLength(150)
+                        .HasColumnType("character varying(150)")
+                        .HasColumnName("nombres");
 
                     b.Property<string>("RazonSocial")
-                        .HasColumnType("text");
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)")
+                        .HasColumnName("razon_social");
 
                     b.Property<int>("TipoPersona")
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("tipo_persona");
 
-                    b.HasKey("Id");
+                    b.HasKey("Id")
+                        .HasName("pk_socios");
 
-                    b.ToTable("Socios");
+                    b.ToTable("socios", (string)null);
                 });
 
             modelBuilder.Entity("WSCajaAhorros.Domain.Socios.TelefonoSocio", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
 
                     b.Property<bool>("EsPrincipal")
-                        .HasColumnType("boolean");
+                        .HasColumnType("boolean")
+                        .HasColumnName("es_principal");
 
                     b.Property<bool>("EstaActivo")
-                        .HasColumnType("boolean");
+                        .HasColumnType("boolean")
+                        .HasColumnName("esta_activo");
 
                     b.Property<string>("Etiqueta")
-                        .HasColumnType("text");
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)")
+                        .HasColumnName("etiqueta");
 
                     b.Property<string>("Numero")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)")
+                        .HasColumnName("numero");
 
                     b.Property<Guid>("SocioId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uuid")
+                        .HasColumnName("socio_id");
 
-                    b.HasKey("Id");
+                    b.HasKey("Id")
+                        .HasName("pk_socios_telefonos");
 
-                    b.HasIndex("SocioId");
+                    b.HasIndex("SocioId", "EsPrincipal")
+                        .HasDatabaseName("ix_socios_telefonos_socio_id_es_principal");
 
-                    b.ToTable("TelefonoSocio");
+                    b.ToTable("socios_telefonos", (string)null);
+                });
+
+            modelBuilder.Entity("WSCajaAhorros.Domain.Contabilidad.AsientoContable", b =>
+                {
+                    b.OwnsOne("WSCajaAhorros.Domain.Common.Dinero", "Monto", b1 =>
+                        {
+                            b1.Property<Guid>("AsientoContableId")
+                                .HasColumnType("uuid")
+                                .HasColumnName("id");
+
+                            b1.Property<decimal>("Monto")
+                                .HasPrecision(18, 2)
+                                .HasColumnType("numeric(18,2)")
+                                .HasColumnName("monto");
+
+                            b1.HasKey("AsientoContableId");
+
+                            b1.ToTable("asientos_contables");
+
+                            b1.WithOwner()
+                                .HasForeignKey("AsientoContableId")
+                                .HasConstraintName("fk_asientos_contables_asientos_contables_id");
+                        });
+
+                    b.Navigation("Monto")
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("WSCajaAhorros.Domain.Cuentas.Cuenta", b =>
@@ -337,17 +696,76 @@ namespace WSCajaAhorros.Infrastructure.Migrations
                     b.OwnsOne("WSCajaAhorros.Domain.Common.Dinero", "Saldo", b1 =>
                         {
                             b1.Property<Guid>("CuentaId")
-                                .HasColumnType("uuid");
+                                .HasColumnType("uuid")
+                                .HasColumnName("id");
+
+                            b1.Property<decimal>("Monto")
+                                .HasPrecision(18, 2)
+                                .HasColumnType("numeric(18,2)")
+                                .HasColumnName("saldo");
 
                             b1.HasKey("CuentaId");
 
-                            b1.ToTable("Cuentas");
+                            b1.ToTable("cuentas");
 
                             b1.WithOwner()
-                                .HasForeignKey("CuentaId");
+                                .HasForeignKey("CuentaId")
+                                .HasConstraintName("fk_cuentas_cuentas_id");
                         });
 
                     b.Navigation("Saldo")
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("WSCajaAhorros.Domain.Movimientos.Movimiento", b =>
+                {
+                    b.OwnsOne("WSCajaAhorros.Domain.Common.Dinero", "Monto", b1 =>
+                        {
+                            b1.Property<Guid>("MovimientoId")
+                                .HasColumnType("uuid")
+                                .HasColumnName("id");
+
+                            b1.Property<decimal>("Monto")
+                                .HasPrecision(18, 2)
+                                .HasColumnType("numeric(18,2)")
+                                .HasColumnName("monto");
+
+                            b1.HasKey("MovimientoId");
+
+                            b1.ToTable("movimientos");
+
+                            b1.WithOwner()
+                                .HasForeignKey("MovimientoId")
+                                .HasConstraintName("fk_movimientos_movimientos_id");
+                        });
+
+                    b.Navigation("Monto")
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("WSCajaAhorros.Domain.Movimientos.Transferencia", b =>
+                {
+                    b.OwnsOne("WSCajaAhorros.Domain.Common.Dinero", "Monto", b1 =>
+                        {
+                            b1.Property<Guid>("TransferenciaId")
+                                .HasColumnType("uuid")
+                                .HasColumnName("id");
+
+                            b1.Property<decimal>("Monto")
+                                .HasPrecision(18, 2)
+                                .HasColumnType("numeric(18,2)")
+                                .HasColumnName("monto");
+
+                            b1.HasKey("TransferenciaId");
+
+                            b1.ToTable("transferencias");
+
+                            b1.WithOwner()
+                                .HasForeignKey("TransferenciaId")
+                                .HasConstraintName("fk_transferencias_transferencias_id");
+                        });
+
+                    b.Navigation("Monto")
                         .IsRequired();
                 });
 
@@ -357,13 +775,15 @@ namespace WSCajaAhorros.Infrastructure.Migrations
                         .WithMany("Roles")
                         .HasForeignKey("PermisoId")
                         .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .IsRequired()
+                        .HasConstraintName("fk_roles_permisos_permisos_permiso_id");
 
                     b.HasOne("WSCajaAhorros.Domain.Security.Rol", "Rol")
                         .WithMany("Permisos")
                         .HasForeignKey("RolId")
                         .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .IsRequired()
+                        .HasConstraintName("fk_roles_permisos_roles_rol_id");
 
                     b.Navigation("Permiso");
 
@@ -376,7 +796,8 @@ namespace WSCajaAhorros.Infrastructure.Migrations
                         .WithMany("AccesosHorarios")
                         .HasForeignKey("UsuarioId")
                         .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .IsRequired()
+                        .HasConstraintName("fk_usuarios_accesos_horarios_usuarios_usuario_id");
 
                     b.Navigation("Usuario");
                 });
@@ -387,13 +808,15 @@ namespace WSCajaAhorros.Infrastructure.Migrations
                         .WithMany("Usuarios")
                         .HasForeignKey("RolId")
                         .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .IsRequired()
+                        .HasConstraintName("fk_usuarios_roles_roles_rol_id");
 
                     b.HasOne("WSCajaAhorros.Domain.Security.Usuario", "Usuario")
                         .WithMany("Roles")
                         .HasForeignKey("UsuarioId")
                         .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .IsRequired()
+                        .HasConstraintName("fk_usuarios_roles_usuarios_usuario_id");
 
                     b.Navigation("Rol");
 
@@ -406,7 +829,8 @@ namespace WSCajaAhorros.Infrastructure.Migrations
                         .WithMany("Correos")
                         .HasForeignKey("SocioId")
                         .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .IsRequired()
+                        .HasConstraintName("fk_socios_correos_socios_socio_id");
                 });
 
             modelBuilder.Entity("WSCajaAhorros.Domain.Socios.DireccionSocio", b =>
@@ -415,19 +839,56 @@ namespace WSCajaAhorros.Infrastructure.Migrations
                         .WithMany("Direcciones")
                         .HasForeignKey("SocioId")
                         .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .IsRequired()
+                        .HasConstraintName("fk_socios_direcciones_socios_socio_id");
 
                     b.OwnsOne("WSCajaAhorros.Domain.Common.Direccion", "Direccion", b1 =>
                         {
                             b1.Property<Guid>("DireccionSocioId")
-                                .HasColumnType("uuid");
+                                .HasColumnType("uuid")
+                                .HasColumnName("id");
+
+                            b1.Property<string>("Ciudad")
+                                .IsRequired()
+                                .HasMaxLength(100)
+                                .HasColumnType("character varying(100)")
+                                .HasColumnName("direccion_ciudad");
+
+                            b1.Property<string>("Linea1")
+                                .IsRequired()
+                                .HasMaxLength(200)
+                                .HasColumnType("character varying(200)")
+                                .HasColumnName("direccion_linea1");
+
+                            b1.Property<string>("Linea2")
+                                .HasMaxLength(200)
+                                .HasColumnType("character varying(200)")
+                                .HasColumnName("direccion_linea2");
+
+                            b1.Property<string>("Pais")
+                                .IsRequired()
+                                .HasMaxLength(100)
+                                .HasColumnType("character varying(100)")
+                                .HasColumnName("direccion_pais");
+
+                            b1.Property<string>("Provincia")
+                                .IsRequired()
+                                .HasMaxLength(100)
+                                .HasColumnType("character varying(100)")
+                                .HasColumnName("direccion_provincia");
+
+                            b1.Property<string>("Referencia")
+                                .HasMaxLength(500)
+                                .HasColumnType("character varying(500)")
+                                .HasColumnName("direccion_referencia");
 
                             b1.HasKey("DireccionSocioId");
 
-                            b1.ToTable("DireccionSocio");
+                            b1.ToTable("socios_direcciones");
 
                             b1.WithOwner()
-                                .HasForeignKey("DireccionSocioId");
+                                .HasForeignKey("DireccionSocioId")
+                                .HasConstraintName("fk_direcciones_socios_direcciones_socios_id");
                         });
 
                     b.Navigation("Direccion")
@@ -439,14 +900,30 @@ namespace WSCajaAhorros.Infrastructure.Migrations
                     b.OwnsOne("WSCajaAhorros.Domain.Socios.Identificacion", "Identificacion", b1 =>
                         {
                             b1.Property<Guid>("SocioId")
-                                .HasColumnType("uuid");
+                                .HasColumnType("uuid")
+                                .HasColumnName("id");
+
+                            b1.Property<string>("Numero")
+                                .IsRequired()
+                                .HasMaxLength(20)
+                                .HasColumnType("character varying(20)")
+                                .HasColumnName("numero_identificacion");
+
+                            b1.Property<int>("Tipo")
+                                .HasColumnType("integer")
+                                .HasColumnName("tipo_identificacion");
 
                             b1.HasKey("SocioId");
 
-                            b1.ToTable("Socios");
+                            b1.HasIndex("Numero")
+                                .IsUnique()
+                                .HasDatabaseName("ix_socios_numero_identificacion");
+
+                            b1.ToTable("socios");
 
                             b1.WithOwner()
-                                .HasForeignKey("SocioId");
+                                .HasForeignKey("SocioId")
+                                .HasConstraintName("fk_socios_socios_id");
                         });
 
                     b.Navigation("Identificacion")
@@ -459,7 +936,8 @@ namespace WSCajaAhorros.Infrastructure.Migrations
                         .WithMany("Telefonos")
                         .HasForeignKey("SocioId")
                         .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .IsRequired()
+                        .HasConstraintName("fk_socios_telefonos_socios_socio_id");
                 });
 
             modelBuilder.Entity("WSCajaAhorros.Domain.Security.Permiso", b =>

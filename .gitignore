@@ -3,4 +3,8 @@ obj/
 /packages/
 riderModule.iml
 /_ReSharper.Caches/
+<<<<<<< HEAD
 pr.md
+=======
+.idea/
+>>>>>>> 8280beaa383ebc131f4dd1fc2efc079cbab3bdfb
