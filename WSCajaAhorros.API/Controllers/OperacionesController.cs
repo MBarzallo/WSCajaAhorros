@@ -15,14 +15,15 @@ public class OperacionesController:ControllerBase
         _OperacionesService = OperacionesService;
     }
 
-    [HttpPost]
+    [HttpPost("depositar")]
     public async Task<IActionResult> Depositar([FromBody] OperacionesRequest request)
     {
         var response = await _OperacionesService.Retirar(request);
         return Ok(response);
     }
 
-    [HttpPost]
+    
+    [HttpPost("retirar")]
     public async Task<IActionResult> Returar([FromBody] OperacionesRequest request)
     {
         var response = await _OperacionesService.Depositar(request);
