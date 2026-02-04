@@ -1,0 +1,230 @@
+/* Nav.module.css */
+
+.nav {
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid #e5e7eb;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+@media (min-width: 640px) {
+  .container {
+    padding: 0 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding: 0 2rem;
+  }
+}
+
+.navContent {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 4rem;
+}
+
+/* Logo */
+.logo {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.logoSvg {
+  width: auto;
+  height: auto; 
+  margin:-10px
+}
+
+/* Menú Desktop */
+.menuDesktop {
+  display: none;
+  align-items: center;
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .menuDesktop {
+    display: flex;
+  }
+}
+
+.menuLink {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #374151;
+  transition: color 0.2s;
+  cursor: pointer;
+  text-transform: capitalize;
+  text-decoration: none;
+}
+
+.menuLink:hover {
+  color: var(--text-accent-hover);
+}
+
+/* Acciones Desktop */
+.actionsDesktop {
+  display: none;
+  align-items: center;
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .actionsDesktop {
+    display: flex;
+  }
+}
+
+.loginLink {
+  padding: 0.5rem 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-accent);
+  transition: color 0.2s;
+  text-decoration: none;
+}
+
+.loginLink:hover {
+  color: var(--text-accent-hover);
+}
+
+.registerButton {
+  padding: 0.5rem 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: white;
+  background: linear-gradient(to right, var(--primary), var(--primary-dark));
+  border-radius: 0.5rem;
+  transition: filter 0.2s, transform 0.2s;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  text-decoration: none;
+  display: inline-block;
+}
+
+.registerButton:hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+}
+
+/* Hamburguesa Móvil */
+.hamburger {
+  display: block;
+  padding: 0.5rem;
+  color: #6b7280;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 0.2s;
+  font-size: 1.5rem;
+}
+
+.hamburger:hover {
+  color: #111827;
+}
+
+.hamburger:focus {
+  outline: none;
+}
+
+@media (min-width: 768px) {
+  .hamburger {
+    display: none;
+  }
+}
+
+/* Menú Móvil */
+.menuMobile {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  background-color: white;
+  border-bottom: 1px solid #f3f4f6;
+  transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+.menuMobileOpen {
+  max-height: 28rem;
+  opacity: 1;
+}
+
+@media (min-width: 768px) {
+  .menuMobile {
+    display: none;
+  }
+}
+
+.menuMobileContent {
+  padding: 0.5rem 1rem 1.5rem;
+}
+
+.menuMobileLink {
+  display: block;
+  padding: 0.75rem;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #374151;
+  border-radius: 0.375rem;
+  transition: background-color 0.2s;
+  text-transform: capitalize;
+  text-decoration: none;
+  margin-bottom: 0.25rem;
+}
+
+.menuMobileLink:hover {
+  background-color: #f9fafb;
+}
+
+.menuMobileActions {
+  padding-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.menuMobileLoginButton {
+  width: 100%;
+  text-align: center;
+  padding: 0.75rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-accent);
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  transition: background-color 0.2s;
+  text-decoration: none;
+  display: block;
+}
+
+.menuMobileLoginButton:hover {
+  background-color: #f9fafb;
+}
+
+.menuMobileRegisterButton {
+  width: 100%;
+  text-align: center;
+  padding: 0.75rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: white;
+  background: linear-gradient(to right, var(--primary), var(--primary-dark));
+  border-radius: 0.5rem;
+  transition: filter 0.2s;
+  text-decoration: none;
+  display: block;
+}
+
+.menuMobileRegisterButton:hover {
+  filter: brightness(1.1);
+}

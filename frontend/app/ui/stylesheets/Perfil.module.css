@@ -1,0 +1,357 @@
+/* UserProfile.module.css */
+
+/* ==================== CONTAINER & LAYOUT ==================== */
+.container {
+  max-width: 896px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.profileCard {
+  background: var(--bg-white);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-color);
+  overflow: hidden;
+}
+
+.cardContent {
+  padding: 1.5rem 2rem 2rem;
+}
+
+/* ==================== HEADER ==================== */
+.headerContainer {
+  position: relative;
+}
+
+.banner {
+  height: 8rem;
+  background: linear-gradient(to right, var(--primary-dark), var(--success));
+}
+
+.avatarSection {
+  position: absolute;
+  top: 3rem;
+  left: 2rem;
+}
+
+.headerInfo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5rem 2rem 1.5rem;
+  gap: 1rem;
+}
+
+.userInfo {
+  flex: 1;
+}
+
+.userName {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--text-primary);
+  margin: 0 0 0.25rem 0;
+}
+
+.userEmail {
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.editButton {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: var(--primary);
+  color: var(--text-white);
+  border: none;
+  border-radius: var(--border-radius);
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s;
+  white-space: nowrap;
+}
+
+.editButton:hover {
+  background: var(--primary-dark);
+}
+
+.editButton i {
+  font-size: 1rem;
+}
+
+/* ==================== AVATAR ==================== */
+.avatarWrapper {
+  position: relative;
+  width: fit-content;
+}
+
+.avatar {
+  background: var(--bg-white);
+  border-radius: 50%;
+  border: 4px solid var(--bg-white);
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatarLarge {
+  width: 8rem;
+  height: 8rem;
+}
+
+.avatarMedium {
+  width: 5rem;
+  height: 5rem;
+}
+
+.avatarSmall {
+  width: 3rem;
+  height: 3rem;
+}
+
+.avatarContent {
+  background: linear-gradient(135deg, var(--primary-dark), var(--success));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-white);
+  font-size: 2.25rem;
+  font-weight: bold;
+  width: calc(100% - 0.5rem);
+  height: calc(100% - 0.5rem);
+}
+
+.avatarSmall .avatarContent {
+  font-size: 1rem;
+}
+
+.avatarMedium .avatarContent {
+  font-size: 1.5rem;
+}
+
+.avatarEditButton {
+  position: absolute;
+  bottom: 0.5rem;
+  right: 0.5rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  background: var(--primary);
+  border: 3px solid var(--bg-white);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s;
+  color: var(--text-white);
+  font-size: 1rem;
+}
+
+.avatarEditButton:hover {
+  background: var(--primary-dark);
+  transform: scale(1.1);
+}
+
+/* ==================== FORM ==================== */
+.form {
+  margin-bottom: 2rem;
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  font-size: 0.875rem;
+  transition: all 0.3s;
+  outline: none;
+}
+
+.input:focus:not(:disabled) {
+  border-color: var(--primary);
+  /* Usando una versión RGBA de la variable primary para el focus ring */
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--primary), transparent 90%);
+}
+
+.input:disabled {
+  background: var(--neutral-light);
+  color: var(--text-secondary);
+  cursor: not-allowed;
+}
+
+.formActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border-color);
+}
+
+/* ==================== BUTTONS ==================== */
+.actionButton {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.25rem;
+  border: none;
+  border-radius: var(--border-radius);
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s;
+  white-space: nowrap;
+}
+
+.buttonPrimary {
+  background: var(--primary);
+  color: var(--text-white);
+}
+
+.buttonPrimary:hover {
+  background: var(--primary-dark);
+}
+
+.buttonSecondary {
+  background: var(--neutral-light);
+  color: var(--text-primary);
+}
+
+.buttonSecondary:hover {
+  background: var(--neutral);
+  color: var(--text-white);
+}
+
+.buttonDanger {
+  background: var(--danger);
+  color: var(--text-white);
+}
+
+.buttonDanger:hover {
+  /* Se cambió #dc2626 por una variable coherente */
+  background: var(--secondary-dark); 
+}
+
+.buttonFullWidth {
+  width: 100%;
+  justify-content: center;
+}
+
+/* ==================== STATS SECTION ==================== */
+.statsSection {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.statsTitle {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 1rem 0;
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.statCard {
+  border-radius: var(--border-radius);
+  padding: 1rem;
+}
+
+.gradientTeal {
+  background: linear-gradient(135deg, var(--info-light) 0%, var(--success-light) 100%);
+}
+
+.gradientBlue {
+  background: linear-gradient(135deg, var(--info-light) 0%, var(--light) 100%);
+}
+
+.gradientAmber {
+  background: linear-gradient(135deg, var(--success-light) 0%, var(--gradient-down) 100%);
+}
+
+.statContent {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.statLabel {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  margin: 0 0 0.25rem 0;
+}
+
+.statValue {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+.gradientTeal .statValue {
+  color: var(--primary-dark);
+}
+
+.gradientBlue .statValue {
+  color: var(--secondary-dark);
+}
+
+.gradientAmber .statValue {
+  color: var(--neutral-dark);
+}
+
+.statIcon {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  color: var(--text-white);
+  flex-shrink: 0;
+}
+
+.gradientTeal .statIcon {
+  background: var(--primary);
+}
+
+.gradientBlue .statIcon {
+  background: var(--primary-dark);
+}
+
+.gradientAmber .statIcon {
+  background: var(--neutral);
+}
+
+/* ==================== RESPONSIVE ==================== */
+/* (Los estilos responsivos se mantienen igual ya que usan dimensiones, no colores) */

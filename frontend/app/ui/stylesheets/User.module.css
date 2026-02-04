@@ -1,0 +1,329 @@
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: white;
+  border-bottom: 1px solid var(--neutral-light);
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+}
+
+/* Logo */
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logoImg {
+  height: 40px;
+  width: auto;
+}
+
+/* Menú */
+.menuDesktop {
+  display: flex;
+  gap: 4px;
+}
+
+.navItem {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 8px 16px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--neutral-dark);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.navItem:hover {
+  background: var(--info-light);
+  color: var(--neutral);
+}
+
+.active {
+  background: var(--light);
+  color: var(--text-accent);
+}
+
+/* Acciones */
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.notification {
+  position: relative;
+  padding: 8px;
+  border-radius: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-secondary);
+}
+
+.notification:hover {
+  background: var(--neutral-light);
+  color: var(--text-primary);
+}
+
+.notification i {
+  font-size: 20px;
+}
+
+.dot {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 8px;
+  height: 8px;
+  background: var(--danger);
+  border-radius: 50%;
+}
+
+/* Usuario */
+.user {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 6px 8px;
+  border-radius: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.user:hover {
+  background: var(--neutral-light);
+}
+
+.avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-white);
+  font-weight: 600;
+  background: linear-gradient(
+    135deg,
+    var(--primary),
+    var(--secondary-dark)
+  );
+}
+
+/* Mobile */
+.mobileButton {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-secondary);
+}
+
+.mobileButton i {
+  font-size: 24px;
+}
+
+@media (max-width: 768px) {
+  .menuDesktop,
+  .actions {
+    display: none;
+  }
+
+  .mobileButton {
+    display: block;
+  }
+}
+
+
+
+/* ========================= */
+/* MENÚ MÓVIL */
+/* ========================= */
+
+.mobileMenu {
+  position: fixed;
+  top: 64px;
+  left: 0;
+  width: 100%;
+  background: var(--bg-white);
+  border-top: 1px solid var(--neutral-light);
+  transform: translateY(-100%);
+  transition: transform 0.3s ease;
+  z-index: 40;
+}
+
+.mobileMenu.open {
+  transform: translateY(0);
+}
+
+.mobileItem {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 14px 20px;
+  text-decoration: none;
+  color: var(--text-secondary);
+  font-weight: 500;
+  border-bottom: 1px solid var(--neutral-light);
+}
+
+.mobileItem:hover {
+  background: var(--light);
+  color: var(--text-accent);
+}
+
+/* Ocultar menú móvil en desktop */
+@media (min-width: 769px) {
+  .mobileMenu {
+    display: none;
+  }
+}
+
+
+/* Dropdown de perfil en Desktop */
+.profileDropdown {
+  position: relative;
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background-color: transparent;
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.user:hover {
+  background-color: var(--neutral-light);
+}
+
+.avatar {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: var(--text-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+
+.arrowIcon {
+  font-size: 1.25rem;
+  transition: transform 0.2s;
+  color: var(--text-secondary);
+}
+
+.arrowOpen {
+  transform: rotate(180deg);
+}
+
+/* Menú desplegable */
+.dropdownMenu {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  right: 0;
+  background-color: var(--bg-white);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-lg);
+  min-width: 12rem;
+  overflow: hidden;
+  z-index: 50;
+  animation: slideDown 0.2s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-0.5rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dropdownItem {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: background-color 0.2s;
+  font-size: 0.875rem;
+}
+
+.dropdownItem:hover {
+  background-color: var(--neutral-light);
+}
+
+.dropdownItem i {
+  font-size: 1.125rem;
+  color: var(--text-secondary);
+}
+
+.dropdownItemDanger {
+  color: var(--danger);
+}
+
+.dropdownItemDanger i {
+  color: var(--danger);
+}
+
+.dropdownItemDanger:hover {
+  background-color: var(--danger-light);
+}
+
+/* Separador en móvil */
+.mobileSeparator {
+  height: 1px;
+  background-color: var(--border-color);
+  margin: 0.5rem 0;
+}
+
+.mobileItemDanger {
+  color: var(--danger);
+}
+
+.mobileItemDanger i {
+  color: var(--danger);
+}
+
+/* Responsive - Ocultar dropdown en móvil */
+@media (max-width: 768px) {
+  .profileDropdown {
+    display: none;
+  }
+}
+
+/* Asegurar que las acciones solo se vean en desktop */
+@media (max-width: 768px) {
+  .actions {
+    display: none;
+  }
+}

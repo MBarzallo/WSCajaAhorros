@@ -1,0 +1,332 @@
+/* Auth.module.css */
+
+/* Container principal */
+.container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, var(--light), white, var(--gradient-down));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 1rem 3rem;
+}
+
+.wrapper {
+  width: 100%;
+  max-width: 28rem;
+}
+
+/* Header */
+.header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.logo {
+  height: 4rem;
+  margin: 0 auto 1rem;
+}
+
+.title {
+  font-size: 1.875rem;
+  font-weight: bold;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  color: var(--text-secondary);
+  font-size: 1rem;
+}
+
+/* Card */
+.card {
+  background-color: var(--bg-white);
+  border-radius: 1rem;
+  box-shadow: 0 25px 50px -12px var(--bg-dark);
+  padding: 2rem;
+}
+
+/* Form */
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.formRow {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
+}
+
+/* Input Wrapper */
+.inputWrapper {
+  position: relative;
+}
+
+.inputIcon {
+  position: absolute;
+  left: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-terciary);
+  font-size: 1.125rem;
+}
+
+.input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  border: 1px solid var(--bg-secondary);
+  border-radius: 0.5rem;
+  outline: none;
+  color:var(--primary);
+  transition: all 0.2s;
+}
+
+.input:focus {
+  border-color: var(--primary);
+  ring: 2px solid var(--primary);
+  box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.1);
+}
+
+.inputWrapper .input {
+  padding-left: 2.75rem;
+}
+
+.inputWithButton {
+  padding-right: 3rem;
+}
+
+.togglePassword {
+  position: absolute;
+  right: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-secondary);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.125rem;
+  transition: color 0.2s;
+}
+
+.togglePassword:hover {
+  color: var(--neutral);
+}
+
+/* Remember & Forgot */
+.rememberForgot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.checkboxLabel {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+}
+
+.checkbox {
+  width: 1rem;
+  height: 1rem;
+  color: var(--primary);
+  border: 1px solid var(--border-color);
+  border-radius: 0.25rem;
+  cursor: pointer;
+  margin-right: 0.5rem;
+}
+
+.checkbox:focus {
+  ring: 2px solid var(--primary);
+  box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.1);
+}
+
+.forgotLink {
+  font-size: 0.875rem;
+  color: var(--text-accent);
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.forgotLink:hover {
+  color: var(--text-accent-hover);
+}
+
+/* Submit Button */
+.submitButton {
+  width: 100%;
+  background: linear-gradient(to right, var(--primary), var(--primary-dark));
+  color: var(--bg-white);
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  white-space: nowrap;
+}
+
+.submitButton:hover {
+  filter: brightness(1.1);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+/* Divider */
+.divider {
+  position: relative;
+  margin: 1.5rem 0;
+}
+
+.dividerLine {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+}
+
+.dividerLine::before {
+  content: "";
+  width: 100%;
+  border-top: 1px solid var(--border-color);
+}
+
+.dividerText {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  font-size: 0.875rem;
+  padding: 0 1rem;
+  background-color: var(--bg-white);
+  color: var(--text-secondary);
+}
+
+/* Social Buttons */
+.socialButtons {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.socialButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 0.5rem;
+  background: var(--bg-white);
+  cursor: pointer;
+  transition: background-color 0.2s;
+  white-space: nowrap;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.socialButton:hover {
+  background-color: var(--bg-white);
+}
+
+.socialButton i {
+  font-size: 1.25rem;
+  margin-right: 0.5rem;
+}
+
+/* Alternative Action */
+.alternativeAction {
+  margin-top: 1.5rem;
+  text-align: center;
+}
+
+.alternativeAction p {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+}
+
+.alternativeLink {
+  color: var(--text-accent);
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.alternativeLink:hover {
+  color: var(--text-accent-hover);
+}
+
+/* Security Info */
+.securityInfo {
+  margin-top: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+
+.securityItem {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.securityItem i {
+  color: var(--primary);
+}
+
+.securityFooter {
+  margin-top: 1.5rem;
+  text-align: center;
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+
+/* Terms Wrapper */
+.termsWrapper {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.termsWrapper .checkbox {
+  margin-top: 0.25rem;
+  flex-shrink: 0;
+}
+
+.termsLabel {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.termsLink {
+  color: var(--text-accent);
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.termsLink:hover {
+  color: var(--text-accent-hover);
+}

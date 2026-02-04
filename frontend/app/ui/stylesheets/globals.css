@@ -1,0 +1,82 @@
+@import "tailwindcss";
+
+
+:root {
+          /* Colores base */
+          --primary: #06b6d4;
+          --primary-dark: #0891b2;
+          --primary-light: #22d3ee;
+          --secondary: #06b6d4;
+          --secondary-dark: #164e63;
+          --highlated: #fbbf24;
+          
+          /* Variantes */
+          --light: #ecfeff;
+          --gradient-down: #a5f3fc;
+          
+          /* Colores adicionales */
+          --success: #10b981;
+          --success-light: #d1fae5;
+          --danger: #ef4444;
+          --danger-light: #fee2e2;
+          --info: #06b6d4;
+          --info-light: #cffafe;
+          --neutral: #6b7280;
+          --neutral-light: #f3f4f6;
+          --neutral-dark: #374151;
+
+          
+          /* Backgrounds */
+          --bg-primary: var(--primary);
+          --bg-secondary: #f9fafb;
+          --bg-white: #ffffff;
+          --bg-dark: #1f2937;
+          --bg-darker: #111827;
+          
+          /* Text */
+          --text-primary: #111827;
+          --text-secondary: #6b7280;
+          --text-tertiary: #9ca3af;
+          --text-white: #ffffff;
+          --text-accent: var(--primary);
+          --text-accent-hover: var(--primary-dark);
+          
+          /* Borders */
+          --border-color: #e5e7eb;
+          --border-radius: 1rem;
+          --border-radius-lg: 1.5rem;
+          
+          /* Shadows */
+          --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+          --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+          --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+          --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        }
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color: var(--foreground);
+    color: var(--foreground);
+  }
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  background-color: var(--bg-secondary);
+}
