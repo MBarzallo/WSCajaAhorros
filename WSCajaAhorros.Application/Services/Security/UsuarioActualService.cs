@@ -1,3 +1,4 @@
+using System.Security.Claims;
 using WSCajaAhorros.Application.Interfaces.Services.Security;
 using Microsoft.AspNetCore.Http;
 
@@ -16,7 +17,7 @@ public class UsuarioActualService : IUsuarioActualService
     {
         var claim = _httpContextAccessor.HttpContext?
             .User?
-            .FindFirst("usuarioId");
+            .FindFirst(ClaimTypes.NameIdentifier);
 
         if (claim == null)
             throw new UnauthorizedAccessException("Usuario no autenticado");

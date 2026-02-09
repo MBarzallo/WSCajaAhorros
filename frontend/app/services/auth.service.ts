@@ -2,11 +2,18 @@ import { api } from "../lib/api";
 import { ENDPOINTS } from "../lib/endpoints";
 
 export const authService = {
-    login: async (credentials: any) => {
-        return api.post(ENDPOINTS.AUTH.LOGIN, credentials);
-    },
+  login: (credentials: {
+    nombreUsuario: string;
+    contrasena: string;
+  }) => {
+    return api.post(ENDPOINTS.AUTH.LOGIN, credentials);
+  },
 
-    register: async (data: any) => {
-        return api.post(ENDPOINTS.USUARIOS.CREATE, data);
-    }
+  activateUser: (userId: string) => {
+    return api.put(ENDPOINTS.AUTH.ACTIVATE(userId));
+  },
+
+  deactivateUser: (userId: string) => {
+    return api.put(ENDPOINTS.AUTH.DEACTIVATE(userId));
+  },
 };

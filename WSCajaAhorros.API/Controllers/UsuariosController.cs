@@ -35,4 +35,18 @@ public class UsuariosController : ControllerBase
         var response = await _usuarioService.CrearUsuarioRol(userId, request);
         return Ok(response);
     }
+    [HttpPut("{userId}/activar")]
+    public async Task<IActionResult> Activar(Guid userId)
+    {
+        var response = await _usuarioService.Activar(userId);
+        return Ok(response);
+    }
+
+    [HttpPut("{userId}/desactivar")]
+    public async Task<IActionResult> Desactivar(Guid userId)
+    {
+        var response = await _usuarioService.Desactivar(userId);
+        return Ok(response);
+    }
+
 }

@@ -149,6 +149,6 @@ public class CuentaService : ICuentaService
     private static string GenerarNumeroCuenta()
     {
         // Simple y suficiente para el proyecto
-        return $"CA-{DateTime.UtcNow:yyyyMMddHHmmss}-{Random.Shared.Next(100, 999)}";
+        return $"CA-{DateTime.UtcNow:yyyyMMddHHmmss}-{Random.Shared.Next(1, 9)}";
     }
 }

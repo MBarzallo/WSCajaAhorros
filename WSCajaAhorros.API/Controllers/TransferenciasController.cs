@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WSCajaAhorros.Application.DTOs.Movimientos;
+using WSCajaAhorros.Application.Interfaces.Services.Movimientos;
 using WSCajaAhorros.Application.Services.Movimientos;
 
 namespace WSCajaAhorros.API.Controllers;
@@ -9,9 +10,9 @@ namespace WSCajaAhorros.API.Controllers;
 [Route("api/[controller]")]
 public class TransferenciasController : ControllerBase
 {
-    private readonly TransferenciaService _transferenciaService;
+    private readonly ITransferenciaService _transferenciaService;
 
-    public TransferenciasController(TransferenciaService transferenciaService)
+    public TransferenciasController(ITransferenciaService transferenciaService)
     {
         _transferenciaService = transferenciaService;
     }

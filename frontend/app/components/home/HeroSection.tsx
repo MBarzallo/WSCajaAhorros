@@ -1,5 +1,4 @@
 import styles from '../../ui/stylesheets/Home.module.css';
-import { AbrirCuentaButton } from './AbrirCuentaButton';
 
 export function HeroSection() {
     return (
@@ -11,8 +10,6 @@ export function HeroSection() {
                 <p className={styles.heroSubtitle}>
                     Gestiona tus finanzas de forma rápida, cómoda y segura.
                 </p>
-
-                <AbrirCuentaButton />
 
             </div>
         </section>

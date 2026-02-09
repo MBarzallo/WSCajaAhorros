@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# 
+#
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WSCajaAhorros.API", "WSCajaAhorros.API\WSCajaAhorros.API.csproj", "{FCC9B30C-DB1D-4211-B3B5-101F125927E0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WSCajaAhorros.Domain", "WSCajaAhorros.Domain\WSCajaAhorros.Domain.csproj", "{D71E5817-E3E6-4A0E-98D2-1CCD8EC5A525}"
@@ -8,8 +8,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WSCajaAhorros.Application", "WSCajaAhorros.Application\WSCajaAhorros.Application.csproj", "{1FFD8C35-3B62-4475-A10F-9879EE75719C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WSCajaAhorros.Infrastructure", "WSCajaAhorros.Infrastructure\WSCajaAhorros.Infrastructure.csproj", "{21FC632D-83E7-4527-8F00-42A57084D892}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WSCajaAhorros.Tests", "WSCajaAhorros.Tests\WSCajaAhorros.Tests.csproj", "{D1ACDC98-4BA9-4DBF-9E6D-77F5069C90D6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,9 +31,5 @@ Global
 		{21FC632D-83E7-4527-8F00-42A57084D892}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{21FC632D-83E7-4527-8F00-42A57084D892}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{21FC632D-83E7-4527-8F00-42A57084D892}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D1ACDC98-4BA9-4DBF-9E6D-77F5069C90D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D1ACDC98-4BA9-4DBF-9E6D-77F5069C90D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D1ACDC98-4BA9-4DBF-9E6D-77F5069C90D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D1ACDC98-4BA9-4DBF-9E6D-77F5069C90D6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

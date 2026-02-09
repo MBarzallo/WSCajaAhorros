@@ -1,5 +1,7 @@
+using System.Text;
 using Microsoft.EntityFrameworkCore;
 using WSCajaAhorros.Application.Common;
+using WSCajaAhorros.Application.Common.Security;
 using WSCajaAhorros.Application.Interfaces.Repositories.Movimientos;
 using WSCajaAhorros.Application.Interfaces.Repositories.Socios;
 using WSCajaAhorros.Application.Interfaces.Security;
@@ -17,6 +19,8 @@ using WSCajaAhorros.Infrastructure.Repositories;
 using WSCajaAhorros.Infrastructure.Repositories.Cuentas;
 using WSCajaAhorros.Infrastructure.Repositories.Movimientos;
 using WSCajaAhorros.Infrastructure.Repositories.Socios;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -32,6 +36,38 @@ builder.Services.AddScoped<DbConnectionFactory>(sp =>
     return new DbConnectionFactory(cs!);
 });
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowFrontend", policy =>
+    {
+        policy
+            .WithOrigins("http://localhost:3000")
+            .AllowAnyHeader()
+            .AllowAnyMethod(); // ← ESTO habilita OPTIONS
+    });
+});
+
+builder.Services
+    .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = false,
+            ValidateAudience = false,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            IssuerSigningKey = new SymmetricSecurityKey(
+                Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Secret"])
+            )
+        };
+    });
+
+builder.Services.AddTransient<ITransferenciaService, TransferenciaService>();
+builder.Services.AddTransient<ITransferenciaRepository, TransferenciaRepository>();
+
+builder.Services.AddTransient<IAutenticacionService, AutenticacionService>();
+builder.Services.AddTransient<JwtService>();
 
 builder.Services.AddScoped<IRolRepository, RolRepository>();
 builder.Services.AddScoped<IRolService, RolService>();
@@ -82,8 +118,11 @@ app.UseExceptionHandler(app =>
 });
 
 app.UseHttpsRedirection();
+app.UseCors("AllowFrontend");
 
+app.UseAuthentication();
 app.UseAuthorization();
+
 
 app.MapControllers();
 

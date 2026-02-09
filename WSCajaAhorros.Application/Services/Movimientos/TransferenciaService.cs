@@ -67,7 +67,7 @@ public class TransferenciaService : ITransferenciaService
                 var transferencia = new Transferencia(
                     cuentaOrigen.Id,
                     cuentaDestino.Id,
-                    monto,
+                    new Dinero(request.Monto),
                     usuarioId,
                     "VENTANILLA",
                     request.Observacion
@@ -75,27 +75,35 @@ public class TransferenciaService : ITransferenciaService
 
                 await _transferenciaRepository.Agregar(transferencia);
 
-                // Movimiento salida
-                await _movimientoRepository.Agregar(new Movimiento(
-                    cuentaOrigen.Id,
-                    TipoMovimiento.TransferenciaSalida,
-                    monto,
-                    usuarioId,
-                    "VENTANILLA",
-                    $"Transferencia a cuenta {cuentaDestino.NumeroCuenta}",
-                    transferenciaId: transferencia.Id
-                ));
+                var montoSalida = new Dinero(request.Monto);
+                var montoEntrada = new Dinero(request.Monto);
 
-                // Movimiento entrada
-                await _movimientoRepository.Agregar(new Movimiento(
-                    cuentaDestino.Id,
-                    TipoMovimiento.TransferenciaEntrada,
-                    monto,
-                    usuarioId,
-                    "VENTANILLA",
-                    $"Transferencia desde cuenta {cuentaOrigen.NumeroCuenta}",
-                    transferenciaId: transferencia.Id
-                ));
+                // Movimiento salida
+                await _movimientoRepository.Agregar(
+                    Movimiento.Crear(
+                        cuentaOrigen.Id,
+                        TipoMovimiento.TransferenciaSalida,
+                        new Dinero(request.Monto),
+                        usuarioId,
+                        "VENTANILLA",
+                        $"Transferencia a cuenta {cuentaDestino.NumeroCuenta}",
+                        transferencia.Id
+                    )
+                );
+
+// Movimiento entrada
+                await _movimientoRepository.Agregar(
+                    Movimiento.Crear(
+                        cuentaDestino.Id,
+                        TipoMovimiento.TransferenciaEntrada,
+                        new Dinero(request.Monto),
+                        usuarioId,
+                        "VENTANILLA",
+                        $"Transferencia desde cuenta {cuentaOrigen.NumeroCuenta}",
+                        transferencia.Id
+                    )
+                );
+
             });
 
             return Response.Success("Transferencia realizada correctamente");

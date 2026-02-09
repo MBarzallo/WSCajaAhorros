@@ -44,4 +44,27 @@ public class Movimiento
         TransferenciaId = transferenciaId;
         FechaOperacion = DateTime.UtcNow;
     }
+    
+    public static Movimiento Crear(
+        Guid cuentaId,
+        TipoMovimiento tipo,
+        Dinero monto,
+        Guid usuarioId,
+        string canal,
+        string descripcion,
+        Guid? transferenciaId = null
+    )
+    {
+        return new Movimiento(
+            cuentaId,
+            tipo,
+            monto,
+            usuarioId,
+            canal,
+            descripcion,
+            direccionIp: null,
+            transferenciaId: transferenciaId
+        );
+    }
+
 }

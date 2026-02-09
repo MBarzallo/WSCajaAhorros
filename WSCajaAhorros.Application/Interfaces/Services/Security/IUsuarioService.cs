@@ -9,4 +9,6 @@ public interface IUsuarioService
     Task<Response<List<Usuario>>> ObtenerTodos();
     Task<Response> CrearUsuario(CrearUsuarioRequest request);
     Task<Response> CrearUsuarioRol(Guid userId, CrearUsuarioRolRequest request);
+    Task<Response> Activar(Guid userId);
+    Task<Response> Desactivar(Guid userId);
 }

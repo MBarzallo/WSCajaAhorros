@@ -3,126 +3,136 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import styles from "../../ui/stylesheets/Auth.module.css"
 import { authService } from "../../services/auth.service";
+import { Logo } from "../../components/Logo";
 
-// ========== COMPONENTE LOGIN ==========
 export default function Login() {
   const router = useRouter();
-  const [showPassword, setShowPassword] = useState(false);
-  const [email, setEmail] = useState("");
+
+  const [usuario, setUsuario] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e?: React.FormEvent) => {
-    e?.preventDefault(); // Prevent form submission if called from event
+    e?.preventDefault();
     setLoading(true);
 
     try {
-      const response: any = await authService.login({ email, password });
-      console.log("Login success", response);
+      const response: any = await authService.login({
+        nombreUsuario: usuario,
+        contrasena: password,
+      });
 
-      if (response && response.token) {
-        localStorage.setItem('token', response.token);
-        // Assuming response.user contains ID or response.userId exists
-        // Adjust based on actual backend response structure. 
-        // If the backend returns user object:
-        if (response.user?.id) localStorage.setItem('userId', response.user.id);
-        // If it returns just userId
-        if (response.userId) localStorage.setItem('userId', response.userId);
+      if (response.ok) {
+        localStorage.setItem("token", response.data.accessToken);
+        if (response.data.usuario?.id)
+          localStorage.setItem("userId", response.data.usuario.id);
+        if (response.data.usuario?.nombreUsuario)
+          localStorage.setItem("userName", response.data.usuario.nombreUsuario);
 
-        // Also save user name for display if available
-        if (response.user?.nombre) localStorage.setItem('userName', response.user.nombre);
-
-        router.push('/user');
+        router.push("/dashboard");
       } else {
-        throw new Error("No token received");
+        throw new Error("Credenciales incorrectas");
       }
     } catch (error) {
-      console.error("Login failed", error);
-      alert("Error al iniciar sesión");
+      console.error(error);
+      alert("Credenciales incorrectas");
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <>
-      <div className={styles.formContainer}>
+    <main className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 via-slate-800 to-slate-700 px-4">
+      <div className="w-full max-w-md bg-white rounded-2xl shadow-2xl p-10">
 
-        {/* Email */}
-        <div className={styles.formGroup}>
-          <label className={styles.label}>Correo Electrónico</label>
-          <div className={styles.inputWrapper}>
-            <div className={styles.inputIcon}>
-              <i className="ri-mail-line"></i>
-            </div>
-            <input
-              required
-              className={styles.input}
-              placeholder="correo@ejemplo.com"
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              name="email"
-            />
-          </div>
+        {/* LOGO */}
+        <div className="flex flex-col items-center mb-8">
+          <Logo h={80} w={80} bg />
+          <h1 className="mt-4 text-2xl font-semibold text-slate-900">
+            Shell
+          </h1>
+          <p className="text-sm text-slate-500 mt-1">
+            Sistema de Gestión – Caja de Ahorros
+          </p>
         </div>
 
-        {/* Password */}
-        <div className={styles.formGroup}>
-          <label className={styles.label}>Contraseña</label>
-          <div className={styles.inputWrapper}>
-            <div className={styles.inputIcon}>
-              <i className="ri-lock-line"></i>
+        {/* FORM */}
+        <form onSubmit={handleSubmit} className="space-y-6">
+
+          {/* Usuario */}
+          <div>
+            <label className="block text-sm font-medium text-slate-700 mb-1">
+              Nombre de usuario
+            </label>
+            <div className="relative">
+              <span className="absolute inset-y-0 left-3 flex items-center text-slate-400">
+                <i className="ri-user-line"></i>
+              </span>
+              <input
+                type="text"
+                required
+                value={usuario}
+                onChange={(e) => setUsuario(e.target.value)}
+                placeholder="usuario"
+                className="w-full pl-10 pr-4 py-3 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-slate-800"
+              />
             </div>
-            <input
-              required
-              className={`${styles.input} ${styles.inputWithButton}`}
-              placeholder="••••••••"
-              type={showPassword ? "text" : "password"}
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              name="password"
-            />
-            <button
-              type="button"
-              className={styles.togglePassword}
-              onClick={() => setShowPassword(!showPassword)}
+          </div>
+
+          {/* Password */}
+          <div>
+            <label className="block text-sm font-medium text-slate-700 mb-1">
+              Contraseña
+            </label>
+            <div className="relative">
+              <span className="absolute inset-y-0 left-3 flex items-center text-slate-400">
+                <i className="ri-lock-line"></i>
+              </span>
+              <input
+                type={showPassword ? "text" : "password"}
+                required
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="••••••••"
+                className="w-full pl-10 pr-10 py-3 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-slate-800"
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute inset-y-0 right-3 flex items-center text-slate-400 hover:text-slate-600"
+              >
+                <i className={showPassword ? "ri-eye-off-line" : "ri-eye-line"} />
+              </button>
+            </div>
+          </div>
+
+          {/* Forgot */}
+          {/* <div className="text-right">
+            <Link
+              href="/forgot-password"
+              className="text-sm text-slate-600 hover:text-slate-900"
             >
-              <i className={showPassword ? "ri-eye-off-line" : "ri-eye-line"}></i>
-            </button>
-          </div>
-        </div>
+              ¿Olvidaste tu contraseña?
+            </Link>
+          </div> */}
 
-        {/* Remember & Forgot */}
-        <div className={styles.rememberForgot}>
-          <Link href="/forgot-password" className={styles.forgotLink}>
-            ¿Olvidaste tu contraseña?
-          </Link>
-        </div>
+          {/* Submit */}
+          <button
+            type="submit"
+            disabled={loading}
+            className="w-full py-3 rounded-lg bg-slate-900 text-white font-medium hover:bg-slate-800 transition disabled:opacity-60"
+          >
+            {loading ? "Verificando..." : "Acceder al Sistema"}
+          </button>
+        </form>
 
-        {/* Submit Button */}
-        <button
-          type="button"
-          className={styles.submitButton}
-          onClick={() => handleSubmit()}
-          disabled={loading}
-        >
-          {loading ? "Cargando..." : "Iniciar Sesión"}
-        </button>
-      </div>
-
-      {/* Register Link */}
-      <div className={styles.alternativeAction}>
-        <p>
-          ¿No tienes una cuenta?{" "}
-          <Link href="/auth/register" className={styles.alternativeLink}>
-            Regístrate Gratis
-          </Link>
+        {/* FOOTER */}
+        <p className="text-xs text-center text-slate-400 mt-8">
+          Acceso exclusivo para personal autorizado
         </p>
       </div>
-
-    </>
+    </main>
   );
 }

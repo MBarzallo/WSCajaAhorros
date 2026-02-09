@@ -41,7 +41,7 @@ export function ContactSection() {
                     </div>
 
                 </div>
-            </div>
+            </div>  
         </section>
     );
 }

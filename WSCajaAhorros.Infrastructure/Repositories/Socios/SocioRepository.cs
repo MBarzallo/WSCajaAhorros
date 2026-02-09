@@ -31,6 +31,28 @@ public class SocioRepository : ISocioRepository
         var socio = await _dbContext.Socios.FirstOrDefaultAsync(s => s.Id == id);
         return socio;
     }
+    public async Task<List<Socio>> Listar(
+        string? identificacion,
+        string? nombres,
+        bool? activo)
+    {
+        var query = _dbContext.Socios.AsQueryable();
+
+        if (!string.IsNullOrWhiteSpace(identificacion))
+            query = query.Where(s => s.Identificacion.Numero.Contains(identificacion));
+
+        if (!string.IsNullOrWhiteSpace(nombres))
+            query = query.Where(s =>
+                (s.Nombres + " " + s.Apellidos).Contains(nombres) ||
+                s.RazonSocial!.Contains(nombres));
+
+        if (activo.HasValue)
+            query = query.Where(s => s.EstaActivo == activo.Value);
+
+        return await query
+            .OrderByDescending(s => s.FechaIngreso)
+            .ToListAsync();
+    }
     
     public Task SaveChangesAsync()
     {

@@ -1,7 +1,7 @@
 
 import { ENDPOINTS } from './endpoints';
 
-const BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5070/api';
+const BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5070';
 
 class ApiClient {
     private getAuthToken(): string | null {
@@ -73,12 +73,13 @@ class ApiClient {
         });
     }
 
-    put<T>(endpoint: string, body: any) {
-        return this.request<T>(endpoint, {
-            method: 'PUT',
-            body: JSON.stringify(body),
-        });
+    put<T>(endpoint: string, body?: any) {
+    return this.request<T>(endpoint, {
+        method: 'PUT',
+        body: body ? JSON.stringify(body) : undefined,
+    });
     }
+
 
     delete<T>(endpoint: string) {
         return this.request<T>(endpoint, { method: 'DELETE' });

@@ -130,4 +130,62 @@ public class SociosService: ISociosService
             return Response.Fail(ex.Message);
         }
     }
+    public async Task<Response<List<Socio>>> Listar(
+        string? identificacion,
+        string? nombres,
+        bool? activo)
+    {
+        var socios = await _socioRepository.Listar(identificacion, nombres, activo);
+        return Response<List<Socio>>.Success(socios);
+    }
+
+    public async Task<Response<Socio>> ObtenerPorId(Guid id)
+    {
+        var socio = await _socioRepository.ObtenerPorId(id);
+        if (socio == null)
+            return Response<Socio>.Fail("Socio no encontrado.");
+
+        return Response<Socio>.Success(socio);
+    }
+
+    public async Task<Response> Actualizar(Guid id, ActualizarSocioRequest request)
+    {
+        var socio = await _socioRepository.ObtenerPorId(id);
+        if (socio == null)
+            return Response.Fail("Socio no encontrado.");
+
+        if (socio.TipoPersona == TipoPersona.Natural)
+        {
+            socio.GetType().GetProperty("Nombres")?.SetValue(socio, request.Nombres);
+            socio.GetType().GetProperty("Apellidos")?.SetValue(socio, request.Apellidos);
+        }
+        else
+        {
+            socio.GetType().GetProperty("RazonSocial")?.SetValue(socio, request.RazonSocial);
+            socio.GetType().GetProperty("NombreComercial")?.SetValue(socio, request.NombreComercial);
+        }
+
+        await _socioRepository.SaveChangesAsync();
+        return Response.Success("Socio actualizado.");
+    }
+
+    public async Task<Response> Activar(Guid id)
+    {
+        var socio = await _socioRepository.ObtenerPorId(id);
+        if (socio == null) return Response.Fail("Socio no encontrado.");
+
+        socio.Activar();
+        await _socioRepository.SaveChangesAsync();
+        return Response.Success("Socio activado.");
+    }
+
+    public async Task<Response> Desactivar(Guid id)
+    {
+        var socio = await _socioRepository.ObtenerPorId(id);
+        if (socio == null) return Response.Fail("Socio no encontrado.");
+
+        socio.Desactivar();
+        await _socioRepository.SaveChangesAsync();
+        return Response.Success("Socio desactivado.");
+    }
 }

@@ -1,5 +1,4 @@
 import styles from '../../ui/stylesheets/Home.module.css';
-import { AbrirCuentaButton } from './AbrirCuentaButton';
 
 export function CtaSection() {
     return (
@@ -9,7 +8,6 @@ export function CtaSection() {
                 <p className={styles.ctaSubtitle}>
                     Abre tu cuenta en menos de 5 minutos y disfruta de todos nuestros servicios sin comisiones
                 </p>
-                <AbrirCuentaButton />
             </div>
         </section>
     );

@@ -7,5 +7,9 @@ public interface ISocioRepository
     Task Crear(Socio socio);
     Task<Socio?> ObtenerPorIdentificacion(string identificacion);
     Task<Socio?> ObtenerPorId(Guid id);
+    Task<List<Socio>> Listar(
+        string? identificacion,
+        string? nombres,
+        bool? activo);
     Task SaveChangesAsync();
 }

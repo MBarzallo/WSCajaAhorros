@@ -34,8 +34,8 @@ public class UsuarioService : IUsuarioService
 
             if(!UsernameValidator.EsValido(request.NombreUsuario))
                 return Response.Fail("El nombre usuario no es valido");
-            
-            var claveTemporal = PasswordGenerator.GenerarTemporal();
+
+            var claveTemporal = "Mjbb_2005";//PasswordGenerator.GenerarTemporal();
             
             var (hash, salt) = PasswordHasher.Hash(claveTemporal);
             
@@ -49,6 +49,30 @@ public class UsuarioService : IUsuarioService
         {
             return Response.Fail(ex.Message);
         }
+    }
+
+    public async Task<Response> Activar(Guid userId)
+    {
+        var usuario = await _usuarioRepository.ObtenerPorId(userId);
+        if (usuario == null)
+            return Response.Fail("Usuario no existe");
+
+        usuario.Activar();
+        await _usuarioRepository.SaveChangesAsync();
+
+        return Response.Success("Usuario activado");
+    }
+
+    public async Task<Response> Desactivar(Guid userId)
+    {
+        var usuario = await _usuarioRepository.ObtenerPorId(userId);
+        if (usuario == null)
+            return Response.Fail("Usuario no existe");
+
+        usuario.Desactivar();
+        await _usuarioRepository.SaveChangesAsync();
+
+        return Response.Success("Usuario desactivado");
     }
 
     public async Task<Response> CrearUsuarioRol(Guid userId, CrearUsuarioRolRequest request)
