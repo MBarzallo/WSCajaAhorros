@@ -44,16 +44,16 @@ export default function Login() {
   };
 
   return (
-    <main className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 via-slate-800 to-slate-700 px-4">
-      <div className="w-full max-w-md bg-white rounded-2xl shadow-2xl p-10">
+    <main className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#204e96] via-[#5ec0ea] to-[#d3ab78] px-4">
+      <div className="w-full max-w-md bg-[#fefefe] rounded-2xl shadow-2xl p-10">
 
         {/* LOGO */}
         <div className="flex flex-col items-center mb-8">
           <Logo h={80} w={80} bg />
-          <h1 className="mt-4 text-2xl font-semibold text-slate-900">
+          <h1 className="mt-4 text-2xl font-semibold text-[#204e96]">
             Shell
           </h1>
-          <p className="text-sm text-slate-500 mt-1">
+          <p className="text-sm text-gray-600 mt-1">
             Sistema de Gestión – Caja de Ahorros
           </p>
         </div>
@@ -63,11 +63,11 @@ export default function Login() {
 
           {/* Usuario */}
           <div>
-            <label className="block text-sm font-medium text-slate-700 mb-1">
+            <label className="block text-sm font-medium text-[#204e96] mb-1">
               Nombre de usuario
             </label>
             <div className="relative">
-              <span className="absolute inset-y-0 left-3 flex items-center text-slate-400">
+              <span className="absolute inset-y-0 left-3 flex items-center text-gray-400">
                 <i className="ri-user-line"></i>
               </span>
               <input
@@ -76,18 +76,18 @@ export default function Login() {
                 value={usuario}
                 onChange={(e) => setUsuario(e.target.value)}
                 placeholder="usuario"
-                className="w-full pl-10 pr-4 py-3 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-slate-800"
+                className="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#5ec0ea]"
               />
             </div>
           </div>
 
           {/* Password */}
           <div>
-            <label className="block text-sm font-medium text-slate-700 mb-1">
+            <label className="block text-sm font-medium text-[#204e96] mb-1">
               Contraseña
             </label>
             <div className="relative">
-              <span className="absolute inset-y-0 left-3 flex items-center text-slate-400">
+              <span className="absolute inset-y-0 left-3 flex items-center text-gray-400">
                 <i className="ri-lock-line"></i>
               </span>
               <input
@@ -96,12 +96,12 @@ export default function Login() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="••••••••"
-                className="w-full pl-10 pr-10 py-3 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-slate-800"
+                className="w-full pl-10 pr-10 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#5ec0ea]"
               />
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute inset-y-0 right-3 flex items-center text-slate-400 hover:text-slate-600"
+                className="absolute inset-y-0 right-3 flex items-center text-gray-400 hover:text-[#204e96]"
               >
                 <i className={showPassword ? "ri-eye-off-line" : "ri-eye-line"} />
               </button>
@@ -112,7 +112,7 @@ export default function Login() {
           {/* <div className="text-right">
             <Link
               href="/forgot-password"
-              className="text-sm text-slate-600 hover:text-slate-900"
+              className="text-sm text-[#5ec0ea] hover:text-[#204e96]"
             >
               ¿Olvidaste tu contraseña?
             </Link>
@@ -122,14 +122,14 @@ export default function Login() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full py-3 rounded-lg bg-slate-900 text-white font-medium hover:bg-slate-800 transition disabled:opacity-60"
+            className="w-full py-3 rounded-lg bg-[#204e96] text-white font-medium hover:bg-[#5ec0ea] transition disabled:opacity-60"
           >
             {loading ? "Verificando..." : "Acceder al Sistema"}
           </button>
         </form>
 
         {/* FOOTER */}
-        <p className="text-xs text-center text-slate-400 mt-8">
+        <p className="text-xs text-center text-gray-400 mt-8">
           Acceso exclusivo para personal autorizado
         </p>
       </div>
